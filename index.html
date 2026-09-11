@@ -1476,86 +1476,114 @@ function doPost(e) {
         }
 
         function handleSaveApiUrl(e) {
-            e.preventDefault();
-            const url = document.getElementById('input-api-url').value.trim();
-            if (url) {
-                googleAppsScriptUrl = url;
-                document.getElementById('active-api-url').value = url;
-                document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
-                document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
-                document.getElementById('status-log').textContent = '> Connection Endpoint Saved: Ready to fetch remote data.';
-                closeModal('modal-config-api');
-                showToast('URL Web App Google Apps Script berhasil dihubungkan!', 'success');
-                testConnection();
-            }
-        }
+    e.preventDefault();
+    const url = document.getElementById('input-api-url').value.trim();
+    if (url) {
+        googleAppsScriptUrl = url;
+        localStorage.setItem('saved_apps_script_url', url); // Simpan permanen
 
-        function useMockEngine() {
-            googleAppsScriptUrl = '';
-            document.getElementById('active-api-url').value = 'Menggunakan Mock Engine Internal';
-            document.getElementById('current-mode-badge').textContent = 'Mode Simulasi Lokasi (Demo)';
-            document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30';
-            closeModal('modal-config-api');
-            showToast('Beralih ke mode simulasi lokal.', 'info');
-        }
+        document.getElementById('active-api-url').value = url;
+        document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
+        document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
+        document.getElementById('status-log').textContent = '> Connection Endpoint Saved: Ready to fetch remote data.';
+        closeModal('modal-config-api');
+        showToast('URL Web App Google Apps Script berhasil dihubungkan & disimpan permanen!', 'success');
+        testConnection();
+    }
+}
 
-        function testConnection() {
-            if (!googleAppsScriptUrl) {
-                showToast('Modul berjalan dalam Mode Simulasi (Local Data)', 'info');
-                return;
-            }
+function useMockEngine() {
+    googleAppsScriptUrl = '';
+    localStorage.removeItem('saved_apps_script_url'); // Hapus data tersimpan jika kembali ke demo
 
-            const log = document.getElementById('status-log');
-            log.textContent = '> Fetching live data from Google Sheets...';
+    document.getElementById('active-api-url').value = 'Menggunakan Mock Engine Internal';
+    document.getElementById('current-mode-badge').textContent = 'Mode Simulasi Lokasi (Demo)';
+    document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30';
+    closeModal('modal-config-api');
+    showToast('Beralih ke mode simulasi lokal.', 'info');
+}
 
-            fetch(googleAppsScriptUrl)
-                .then(res => res.json())
-                .then(data => {
-                    if (Array.isArray(data) && data.length > 0) {
-                        currentSuratList = data;
-                        renderSuratTable(currentSuratList);
-                        log.textContent = `> Sync Successful! Fetched ${data.length} records.`;
-                        showToast(`Berhasil menyinkronkan ${data.length} surat dari Google Sheets!`, 'success');
-                    }
-                })
-                .catch(err => {
-                    log.textContent = '> Sync Failed: Returning to fallback buffer.';
-                    showToast('Gagal terhubung ke URL Google Script (Pastikan opsi Web App Anyone aktif).', 'warning');
-                });
-        }
+function testConnection() {
+    if (!googleAppsScriptUrl) {
+        showToast('Modul berjalan dalam Mode Simulasi (Local Data)', 'info');
+        return;
+    }
 
-        function refreshData() {
-            if (googleAppsScriptUrl) {
-                testConnection();
-            } else {
+    const log = document.getElementById('status-log');
+    log.textContent = '> Fetching live data from Google Sheets...';
+
+    fetch(googleAppsScriptUrl)
+        .then(res => res.json())
+        .then(data => {
+            if (Array.isArray(data) && data.length > 0) {
+                currentSuratList = data;
                 renderSuratTable(currentSuratList);
-                showToast('Tampilan data surat diperbarui.', 'info');
+                log.textContent = `> Sync Successful! Fetched ${data.length} records.`;
+                showToast(`Berhasil menyinkronkan ${data.length} surat dari Google Sheets!`, 'success');
             }
+        })
+        .catch(err => {
+            log.textContent = '> Sync Failed: Returning to fallback buffer.';
+            showToast('Gagal terhubung ke URL Google Script (Pastikan opsi Web App Anyone aktif).', 'warning');
+        });
+}
+
+function refreshData() {
+    if (googleAppsScriptUrl) {
+        testConnection();
+    } else {
+        renderSuratTable(currentSuratList);
+        showToast('Tampilan data surat diperbarui.', 'info');
+    }
+}
+
+function showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+
+    let bg = 'bg-slate-900 text-white';
+    if (type === 'success') bg = 'bg-emerald-600 text-white';
+    if (type === 'warning') bg = 'bg-amber-600 text-white';
+    if (type === 'info') bg = 'bg-pu-blue text-white';
+
+    toast.className = `px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0 ${bg}`;
+    toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+    }, 50);
+
+    setTimeout(() => {
+        toast.classList.add('opacity-0');
+        setTimeout(() => toast.remove(), 300);
+    }, 3500);
+}
+
+// Inisialisasi otomatis & cek URL tersimpan saat halaman dimuat
+window.addEventListener('DOMContentLoaded', () => {
+    if (typeof renderStaffGrid === 'function') renderStaffGrid();
+    if (typeof populatePjSelect === 'function') populatePjSelect();
+    if (typeof renderSuratTable === 'function') renderSuratTable(currentSuratList);
+    if (typeof startHeroSlideshow === 'function') startHeroSlideshow();
+
+    const savedUrl = localStorage.getItem('saved_apps_script_url');
+    if (savedUrl) {
+        googleAppsScriptUrl = savedUrl;
+        const inputEl = document.getElementById('input-api-url');
+        const activeEl = document.getElementById('active-api-url');
+        const badgeEl = document.getElementById('current-mode-badge');
+        
+        if (inputEl) inputEl.value = savedUrl;
+        if (activeEl) activeEl.value = savedUrl;
+        if (badgeEl) {
+            badgeEl.textContent = 'Mode Google Sheets Connected';
+            badgeEl.className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
         }
-
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-
-            let bg = 'bg-slate-900 text-white';
-            if (type === 'success') bg = 'bg-emerald-600 text-white';
-            if (type === 'warning') bg = 'bg-amber-600 text-white';
-            if (type === 'info') bg = 'bg-pu-blue text-white';
-
-            toast.className = `px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0 ${bg}`;
-            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
-
-            container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 50);
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
-        }
-    </script>
+        testConnection();
+    }
+});
+</script>
 </body>
 </html>
