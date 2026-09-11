@@ -1568,15 +1568,14 @@ window.addEventListener('DOMContentLoaded', () => {
     if (typeof renderSuratTable === 'function') renderSuratTable(currentSuratList);
     if (typeof startHeroSlideshow === 'function') startHeroSlideshow();
 
-    const savedUrl = localStorage.getItem('saved_apps_script_url');
-    if (savedUrl) {
-        googleAppsScriptUrl = savedUrl;
+    // Langsung jalankan koneksi menggunakan URL yang sudah di-hardcode di atas
+    if (googleAppsScriptUrl) {
         const inputEl = document.getElementById('input-api-url');
         const activeEl = document.getElementById('active-api-url');
         const badgeEl = document.getElementById('current-mode-badge');
         
-        if (inputEl) inputEl.value = savedUrl;
-        if (activeEl) activeEl.value = savedUrl;
+        if (inputEl) inputEl.value = googleAppsScriptUrl;
+        if (activeEl) activeEl.value = googleAppsScriptUrl;
         if (badgeEl) {
             badgeEl.textContent = 'Mode Google Sheets Connected';
             badgeEl.className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
