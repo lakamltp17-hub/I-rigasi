@@ -72,7 +72,7 @@
     <div id="login-overlay" class="fixed inset-0 z-50 bg-slate-900/20 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-200 animate-in fade-in zoom-in duration-300">
             <div class="bg-pu-darkblue text-white p-6 text-center relative border-b border-slate-700">
-                <div class="w-16 h-16 bg-white rounded-xl mx-auto flex items-center justify-center p-1.5 shadow-md mb-3">
+                <div class="w-16 h-16 bg-transparent rounded-xl mx-auto flex items-center justify-center p-1.5 mb-3">
                     <img src="Lambang_Ambon.png" alt="Logo Pemkot Ambon" class="w-full h-full object-contain">
                 </div>
                 <span class="text-xs font-semibold uppercase tracking-wider text-pu-yellow">Pemerintah Kota Ambon</span>
@@ -183,7 +183,7 @@
 
     <main class="flex-grow">
         <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900 text-white">
-            <!-- Background Image with Overlay (Modified with ID for Slideshow) -->
+            <!-- Background Image with Overlay -->
             <div class="absolute inset-0 z-0">
                 <img id="hero-bg-image" src="" 
                      alt="Gedung PUPR Ambon & Infrastruktur" 
@@ -250,7 +250,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="text-xs font-bold uppercase tracking-widest text-pu-gold bg-amber-100/80 px-3.5 py-1.5 rounded-full border border-amber-300 shadow-sm">E-DISPOSISI & TRANSPARANSI PELAYANAN</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-pu-blue mt-3 tracking-tight">Irigasi</h2>
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-pu-blue mt-3 tracking-tight">IRIGASI</h2>
                     <p class="text-pu-darkblue font-bold text-base sm:text-lg mt-2">Integrasi Rekam Informasi dan Monitoring Administrasi Surat Instansi</p>
                     <p class="text-slate-600 mt-2 text-sm max-w-2xl mx-auto">Monitoring lengkap mencakup Nomor, Tanggal, Penanggung Jawab, Status, Asal, Perihal, Disposisi Pimpinan, Dokumentasi Lapangan, Scan PDF/Foto, serta Terhubung Google Spreadsheet.</p>
                 </div>
@@ -557,8 +557,11 @@
                 </div>
             </div>
 
-            <!-- Modal Footer -->
-            <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-end">
+            <!-- Modal Footer (Tombol Simpan File & Tutup Detail) -->
+            <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-end gap-2">
+                <button onclick="saveCurrentLetterChanges()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan File
+                </button>
                 <button onclick="closeModal('modal-detail-surat')" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-bold transition">
                     Tutup Detail
                 </button>
@@ -906,7 +909,7 @@ function doPost(e) {
                 nama: 'Ryan Wlilliam Manuputty, ST',
                 jabatan: 'Staff',
                 whatsapp: '6282239456160',
-                foto: 'Ryan.png',
+                foto: 'Rian.jpeg',
                 status: 'Aktif'
             },
 			{
@@ -914,7 +917,7 @@ function doPost(e) {
                 nama: 'Hegi Daniel Mulya, ST',
                 jabatan: 'Staff',
                 whatsapp: '6281297987207',
-                foto: 'Hegi.png',
+                foto: 'Egi.jpeg',
                 status: 'Aktif'
             },
 			{
@@ -946,7 +949,7 @@ function doPost(e) {
                 nama: 'Mutiah Zaila Isti Ishak, S.PWK',
                 jabatan: 'Staff',
                 whatsapp: '6285796845794',
-                foto: 'Mutiah.png',
+                foto: 'Muti.jpeg',
                 status: 'Aktif'	
 			},	
 			{
@@ -954,7 +957,7 @@ function doPost(e) {
                 nama: 'Regiarta Sampetoding, ST',
                 jabatan: 'Staff',
                 whatsapp: '6285299585501',
-                foto: 'Regi.png',
+                foto: 'Regiarta.jpeg',
                 status: 'Aktif'	
 			},	
 			{
@@ -1083,7 +1086,9 @@ function doPost(e) {
             "624c60ba898e4.jpg",
             "affb0e54-0e51-48dc-b11c-a344cbc253df.jpg",
             "images (2).jpg",
-            "images.jpg"
+			"monumen-martha-christina-tiahahu.jpeg",
+			"1572330453971-pantai-pintu-kota-di-ambon.jpg",
+			"photo-1688281675104-ac1723dae921.a",
         ];
         let currentHeroIndex = 0;
 
@@ -1185,7 +1190,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const showingCount = document.getElementById('showing-count');
             const totalCount = document.getElementById('total-count');
 
-            const limitedData = data.slice(0, 5);
+            const limitedData = data;
 
             showingCount.textContent = limitedData.length;
             totalCount.textContent = currentSuratList.length;
@@ -1338,9 +1343,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 currentActiveSuratItem.scanUrl = result;
                 
                 openDetailModal(currentActiveSuratItem);
-                localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
-                renderSuratTable(currentSuratList);
-                showToast('Scan berkas surat berhasil diperbarui!', 'success');
+                showToast('File scan berhasil dimuat sementara. Klik "Simpan File" untuk menyimpan permanen.', 'info');
             };
             reader.readAsDataURL(file);
         }
@@ -1355,11 +1358,54 @@ window.addEventListener('DOMContentLoaded', () => {
                 currentActiveSuratItem.dokumentasiUrl = result;
                 document.getElementById('det-dok-img').src = result;
                 
-                localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
-                renderSuratTable(currentSuratList);
-                showToast('Dokumentasi lapangan berhasil diperbarui!', 'success');
+                showToast('Foto dokumentasi berhasil dimuat sementara. Klik "Simpan File" untuk menyimpan permanen.', 'info');
             };
             reader.readAsDataURL(file);
+        }
+
+        // PERBAIKAN UTAMA: Fungsi Simpan File mengupdate data yang ada tanpa menambah baris baru (bertumpuk)
+        function saveCurrentLetterChanges() {
+            if (!currentActiveSuratItem) return;
+
+            // Cari index data berdasarkan nomor surat yang sedang aktif diedit
+            const index = currentSuratList.findIndex(item => item.nomorSurat === currentActiveSuratItem.nomorSurat);
+            if (index !== -1) {
+                // Timpa data pada index yang sama (Edit murni, tidak menambah baris baru)
+                currentSuratList[index] = { ...currentActiveSuratItem };
+            } else {
+                // Jika data belum ada, masukkan ke awal list
+                currentSuratList.unshift(currentActiveSuratItem);
+            }
+
+            // Simpan ke Cache / Dashboard Utama (localStorage)
+            localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
+            renderSuratTable(currentSuratList);
+            showToast('Perubahan file berhasil disimpan!', 'success');
+
+            // Kirim pembaruan ke Google Spreadsheet berdasarkan nomor surat
+            if (googleAppsScriptUrl) {
+                fetch(googleAppsScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'update',
+                        nomorSurat: currentActiveSuratItem.nomorSurat,
+                        tanggalSurat: currentActiveSuratItem.tanggalSurat,
+                        asalSurat: currentActiveSuratItem.asalSurat,
+                        perihal: currentActiveSuratItem.perihal,
+                        penanggungJawab: currentActiveSuratItem.penanggungJawab,
+                        status: currentActiveSuratItem.status,
+                        disposisi: currentActiveSuratItem.disposisi,
+                        scanUrl: currentActiveSuratItem.scanUrl,
+                        dokumentasiUrl: currentActiveSuratItem.dokumentasiUrl
+                    })
+                }).then(() => {
+                    showToast('Data berhasil disinkronkan ke Google Spreadsheet!', 'info');
+                }).catch(err => console.error(err));
+            }
+
+            closeModal('modal-detail-surat');
         }
 
         function handleFileUpload(input, type) {
