@@ -505,7 +505,20 @@
                     </div>
                     <div>
                         <span class="text-slate-400 uppercase font-semibold block text-[10px]">Penanggung Jawab Teknis</span>
-                        <span id="det-pj" class="font-bold text-pu-blue text-sm flex items-center gap-1.5 mt-0.5">-</span>
+                        <!-- Dibuat Interaktif: Dapat diklik/diubah staf langsung -->
+                        <div class="mt-0.5 relative">
+                            <button type="button" onclick="toggleEditPjDropdown()" id="det-pj-btn" class="w-full text-left font-bold text-pu-blue text-sm flex items-center justify-between bg-white px-2.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 transition shadow-sm">
+                                <span id="det-pj" class="truncate"><i class="fa-solid fa-user-check text-emerald-600 mr-1"></i> -</span>
+                                <i class="fa-solid fa-chevron-down text-[10px] text-slate-500"></i>
+                            </button>
+                            <!-- Dropdown list staff pilihan penanggung jawab -->
+                            <div id="det-pj-dropdown" class="hidden absolute z-20 mt-1 w-72 bg-white rounded-xl shadow-xl border border-slate-200 p-2 max-h-56 overflow-y-auto custom-scrollbar space-y-1">
+                                <div class="text-[10px] font-bold text-slate-400 uppercase px-2 py-1">Pilih Staf Penanggung Jawab:</div>
+                                <div id="det-pj-checkboxes" class="space-y-1">
+                                    <!-- Diisi dynamically -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <span class="text-slate-400 uppercase font-semibold block text-[10px]">Status Saat Ini</span>
@@ -612,7 +625,7 @@
                         <input type="text" id="input-asal" required placeholder="Contoh: Kantor Kecamatan Sirimau..." class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-pu-blue">
                     </div>
                     <div>
-                        <label class="block font-semibold text-slate-700 mb-1">Penanggung Jawab Teknis (Bisa Pilih Banyak) *</label>
+                        <label class="block font-semibold text-slate-700 mb-1">Penanggung Jawab Teknis (Opsional / Bisa Nanti)</label>
                         <div id="input-pj-container" class="max-h-40 overflow-y-auto border border-slate-300 rounded-xl p-2.5 space-y-1.5 bg-slate-50 custom-scrollbar">
                             <!-- Populated dynamically with checkboxes -->
                         </div>
@@ -801,7 +814,7 @@ function doPost(e) {
                 </button>
             </div>
             <div class="p-6 space-y-4 text-xs">
-                <p class="text-slate-600">Surat berhasil diregistrasi! Pilih tujuan pengiriman pesan WhatsApp untuk staf teknis / penanggung jawab:</p>
+                <p class="text-slate-600">Surat berhasil diperbarui! Pilih tujuan pengiriman pesan WhatsApp untuk staf teknis / penanggung jawab:</p>
                 
                 <div class="space-y-2">
                     <label class="block font-semibold text-slate-700">Nomor WhatsApp Tujuan (Staf/Penanggung Jawab):</label>
@@ -1105,33 +1118,32 @@ function doPost(e) {
         ];
         let currentHeroIndex = 0;
 
-window.addEventListener('DOMContentLoaded', () => {
-    // Cek apakah ada URL API yang tersimpan di localStorage
-    const savedApi = localStorage.getItem('saved_apps_script_url');
-    if (savedApi) {
-        googleAppsScriptUrl = savedApi;
-        document.getElementById('active-api-url').value = savedApi;
-        document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
-        document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
-    }
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedApi = localStorage.getItem('saved_apps_script_url');
+            if (savedApi) {
+                googleAppsScriptUrl = savedApi;
+                document.getElementById('active-api-url').value = savedApi;
+                document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
+                document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
+            }
 
-    const cached = localStorage.getItem('surat_data_cache');
-    if (cached) {
-        try {
-            currentSuratList = JSON.parse(cached);
-        } catch(e) {}
-    }
+            const cached = localStorage.getItem('surat_data_cache');
+            if (cached) {
+                try {
+                    currentSuratList = JSON.parse(cached);
+                } catch(e) {}
+            }
 
-    renderStaffGrid();
-    populatePjSelect();
-    renderSuratTable(currentSuratList);
-    startHeroSlideshow();
+            renderStaffGrid();
+            populatePjSelect();
+            populateDetailPjCheckboxes();
+            renderSuratTable(currentSuratList);
+            startHeroSlideshow();
 
-    // TAMBAHAN: Otomatis ambil data terbaru dari Google Sheets saat dibuka di device manapun
-    if (googleAppsScriptUrl) {
-        testConnection();
-    }
-});
+            if (googleAppsScriptUrl) {
+                testConnection();
+            }
+        });
 
         function startHeroSlideshow() {
             const bgImageElement = document.getElementById('hero-bg-image');
@@ -1198,6 +1210,33 @@ window.addEventListener('DOMContentLoaded', () => {
             `).join('');
         }
 
+        function populateDetailPjCheckboxes() {
+            const container = document.getElementById('det-pj-checkboxes');
+            if (!container) return;
+            container.innerHTML = staffList.map(staf => `
+                <label class="flex items-center gap-2 px-2 py-1.5 hover:bg-slate-100 rounded-lg cursor-pointer text-xs transition">
+                    <input type="checkbox" name="editPenanggungJawab" value="${staf.nama}" data-whatsapp="${staf.whatsapp || ''}" onchange="updateSelectedDetailPj()" class="w-3.5 h-3.5 rounded border-slate-300 text-pu-blue focus:ring-pu-blue">
+                    <span class="text-slate-700 font-medium">${staf.nama}</span>
+                </label>
+            `).join('');
+        }
+
+        function toggleEditPjDropdown() {
+            const dropdown = document.getElementById('det-pj-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        function updateSelectedDetailPj() {
+            const checkboxes = document.querySelectorAll('input[name="editPenanggungJawab"]:checked');
+            const selectedNames = Array.from(checkboxes).map(cb => cb.value);
+            const pjText = selectedNames.length > 0 ? selectedNames.join(', ') : 'Belum Ditentukan';
+            
+            document.getElementById('det-pj').innerHTML = `<i class="fa-solid fa-user-check text-emerald-600"></i> ${pjText}`;
+            if (currentActiveSuratItem) {
+                currentActiveSuratItem.penanggungJawab = pjText;
+            }
+        }
+
         function renderSuratTable(data) {
             const tbody = document.getElementById('surat-table-body');
             const showingCount = document.getElementById('showing-count');
@@ -1241,7 +1280,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         </td>
                         <td class="py-4 px-4 sm:px-6 font-medium text-slate-700">
                             <span class="inline-flex items-center gap-1 bg-slate-100 px-2 py-1 rounded text-xs font-semibold">
-                                <i class="fa-solid fa-user-gear text-pu-yellow"></i> ${item.penanggungJawab}
+                                <i class="fa-solid fa-user-gear text-pu-yellow"></i> ${item.penanggungJawab || 'Belum Ditentukan'}
                             </span>
                         </td>
                         <td class="py-4 px-4 sm:px-6 max-w-xs text-slate-600 text-xs italic">
@@ -1271,7 +1310,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 const matchQuery = item.nomorSurat.toLowerCase().includes(query) ||
                                    item.perihal.toLowerCase().includes(query) ||
                                    item.asalSurat.toLowerCase().includes(query) ||
-                                   item.penanggungJawab.toLowerCase().includes(query);
+                                   (item.penanggungJawab && item.penanggungJawab.toLowerCase().includes(query));
 
                 const matchStatus = (statusFilter === 'ALL') || (item.status === statusFilter);
 
@@ -1294,8 +1333,18 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('det-nomor').textContent = item.nomorSurat;
             document.getElementById('det-tanggal').textContent = item.tanggalSurat;
             document.getElementById('det-asal').textContent = item.asalSurat;
-            document.getElementById('det-pj').innerHTML = `<i class="fa-solid fa-user-check text-emerald-600"></i> ${item.penanggungJawab}`;
+            document.getElementById('det-pj').innerHTML = `<i class="fa-solid fa-user-check text-emerald-600"></i> ${item.penanggungJawab || 'Belum Ditentukan'}`;
             document.getElementById('det-disposisi').textContent = item.disposisi || 'Belum ada catatan disposisi.';
+
+            const pjCheckboxes = document.querySelectorAll('input[name="editPenanggungJawab"]');
+            pjCheckboxes.forEach(cb => {
+                if (item.penanggungJawab && item.penanggungJawab.includes(cb.value)) {
+                    cb.checked = true;
+                } else {
+                    cb.checked = false;
+                }
+            });
+            document.getElementById('det-pj-dropdown').classList.add('hidden');
 
             const statusBadge = document.getElementById('det-status-badge');
             statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300';
@@ -1306,7 +1355,6 @@ window.addEventListener('DOMContentLoaded', () => {
             const scanDownload = document.getElementById('det-scan-download');
             const dokDownload = document.getElementById('det-dok-download');
             
-            // Render scan preview dynamically based on whether it is a PDF or an Image
             if (scanUrl.includes('application/pdf') || scanUrl.toLowerCase().endsWith('.pdf') || scanUrl.includes('.pdf?')) {
                 scanPreviewBox.innerHTML = `
                     <div class="flex flex-col items-center justify-center p-6 text-center h-full w-full bg-red-50 text-red-700">
@@ -1376,26 +1424,29 @@ window.addEventListener('DOMContentLoaded', () => {
             reader.readAsDataURL(file);
         }
 
-        // PERBAIKAN UTAMA: Fungsi Simpan File mengupdate data yang ada tanpa menambah baris baru (bertumpuk)
+        // PERBAIKAN UTAMA: Sinkronisasi Checkbox Staf PJ saat tombol Simpan File diklik + Sinkronisasi WhatsApp
         function saveCurrentLetterChanges() {
             if (!currentActiveSuratItem) return;
 
-            // Cari index data berdasarkan nomor surat yang sedang aktif diedit
+            // Ambil ulang staf yang dicentang pada checkbox modal detail
+            const checkedBoxes = Array.from(document.querySelectorAll('input[name="editPenanggungJawab"]:checked'));
+            const checkedPj = checkedBoxes.map(el => el.value);
+            const penanggungJawabStr = checkedPj.length > 0 ? checkedPj.join(', ') : 'Belum Ditentukan';
+
+            // Perbarui properti penanggung jawab pada item aktif
+            currentActiveSuratItem.penanggungJawab = penanggungJawabStr;
+
             const index = currentSuratList.findIndex(item => item.nomorSurat === currentActiveSuratItem.nomorSurat);
             if (index !== -1) {
-                // Timpa data pada index yang sama (Edit murni, tidak menambah baris baru)
                 currentSuratList[index] = { ...currentActiveSuratItem };
             } else {
-                // Jika data belum ada, masukkan ke awal list
                 currentSuratList.unshift(currentActiveSuratItem);
             }
 
-            // Simpan ke Cache / Dashboard Utama (localStorage)
             localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
             renderSuratTable(currentSuratList);
-            showToast('Perubahan file berhasil disimpan!', 'success');
+            showToast('Perubahan file & penanggung jawab berhasil disimpan!', 'success');
 
-            // Kirim pembaruan ke Google Spreadsheet berdasarkan nomor surat
             if (googleAppsScriptUrl) {
                 fetch(googleAppsScriptUrl, {
                     method: 'POST',
@@ -1419,6 +1470,29 @@ window.addEventListener('DOMContentLoaded', () => {
             }
 
             closeModal('modal-detail-surat');
+
+            // Munculkan pratinjau WhatsApp jika staf dipilih
+            if (checkedBoxes.length > 0) {
+                window.selectedStaffForWa = checkedBoxes.map(el => ({
+                    nama: el.value,
+                    whatsapp: el.getAttribute('data-whatsapp') || ''
+                }));
+
+                const waMessage = `*NOTIFIKASI UPDATE E-DISPOSISI SURAT PUPR KOTA AMBON*\n\n` +
+                                  `Halo/Yth. Staf Teknis *(${penanggungJawabStr})*,\n\n` +
+                                  `Terdapat pembaruan penugasan/disposisi surat:\n` +
+                                  `• *No. Surat:* ${currentActiveSuratItem.nomorSurat}\n` +
+                                  `• *Tanggal:* ${currentActiveSuratItem.tanggalSurat}\n` +
+                                  `• *Asal:* ${currentActiveSuratItem.asalSurat}\n` +
+                                  `• *Perihal:* ${currentActiveSuratItem.perihal}\n` +
+                                  `• *Disposisi Pimpinan:* ${currentActiveSuratItem.disposisi}\n` +
+                                  `• *Status:* ${currentActiveSuratItem.status}\n\n` +
+                                  `Mohon segera dicek pada portal resmi Dinas PUPR Kota Ambon. Terima kasih.`;
+
+                document.getElementById('wa-target-phone').value = window.selectedStaffForWa.map(s => s.whatsapp).join(', ');
+                document.getElementById('wa-preview-message').value = waMessage;
+                document.getElementById('modal-whatsapp-preview').classList.remove('hidden');
+            }
         }
 
         function handleFileUpload(input, type) {
@@ -1498,13 +1572,8 @@ window.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             const checkedBoxes = Array.from(document.querySelectorAll('input[name="penanggungJawab"]:checked'));
-            if (checkedBoxes.length === 0) {
-                showToast('Pilih minimal satu Penanggung Jawab Teknis!', 'warning');
-                return;
-            }
-            
             const checkedPj = checkedBoxes.map(el => el.value);
-            const penanggungJawabStr = checkedPj.join(', ');
+            const penanggungJawabStr = checkedPj.length > 0 ? checkedPj.join(', ') : 'Belum Ditentukan';
 
             const newSurat = {
                 nomorSurat: document.getElementById('input-nomor').value,
@@ -1513,7 +1582,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 perihal: document.getElementById('input-perihal').value,
                 penanggungJawab: penanggungJawabStr,
                 status: document.getElementById('input-status').value,
-                disposisi: document.getElementById('input-disposisi').value || 'Segera ditindaklanjuti',
+                disposisi: document.getElementById('input-disposisi').value || 'Belum ada disposisi',
                 scanUrl: uploadedScanUrl || 'https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=800&auto=format&fit=crop',
                 dokumentasiUrl: uploadedDokUrl || 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?q=80&w=800&auto=format&fit=crop'
             };
@@ -1522,27 +1591,29 @@ window.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
             renderSuratTable(currentSuratList);
             closeModal('modal-input-surat');
-            showToast('Surat & Berkas berhasil ditambahkan ke sistem!', 'success');
+            showToast('Surat & Berkas berhasil disimpan!', 'success');
 
-            window.selectedStaffForWa = checkedBoxes.map(el => ({
-                nama: el.value,
-                whatsapp: el.getAttribute('data-whatsapp') || ''
-            }));
+            if (checkedBoxes.length > 0) {
+                window.selectedStaffForWa = checkedBoxes.map(el => ({
+                    nama: el.value,
+                    whatsapp: el.getAttribute('data-whatsapp') || ''
+                }));
 
-            const waMessage = `*NOTIFIKASI E-DISPOSISI SURAT PUPR KOTA AMBON*\n\n` +
-                              `Halo/Yth. Staf Teknis *(${penanggungJawabStr})*,\n\n` +
-                              `Terdapat surat masuk baru yang didisposisikan kepada Tim Anda:\n` +
-                              `• *No. Surat:* ${newSurat.nomorSurat}\n` +
-                              `• *Tanggal:* ${newSurat.tanggalSurat}\n` +
-                              `• *Asal:* ${newSurat.asalSurat}\n` +
-                              `• *Perihal:* ${newSurat.perihal}\n` +
-                              `• *Disposisi Pimpinan:* ${newSurat.disposisi}\n` +
-                              `• *Status:* ${newSurat.status}\n\n` +
-                              `Mohon segera dicek pada portal resmi Dinas PUPR Kota Ambon untuk ditindaklanjuti. Terima kasih.`;
+                const waMessage = `*NOTIFIKASI E-DISPOSISI SURAT PUPR KOTA AMBON*\n\n` +
+                                  `Halo/Yth. Staf Teknis *(${penanggungJawabStr})*,\n\n` +
+                                  `Terdapat surat masuk yang didisposisikan kepada Tim Anda:\n` +
+                                  `• *No. Surat:* ${newSurat.nomorSurat}\n` +
+                                  `• *Tanggal:* ${newSurat.tanggalSurat}\n` +
+                                  `• *Asal:* ${newSurat.asalSurat}\n` +
+                                  `• *Perihal:* ${newSurat.perihal}\n` +
+                                  `• *Disposisi Pimpinan:* ${newSurat.disposisi}\n` +
+                                  `• *Status:* ${newSurat.status}\n\n` +
+                                  `Mohon segera dicek pada portal resmi Dinas PUPR Kota Ambon untuk ditindaklanjuti. Terima kasih.`;
 
-            document.getElementById('wa-target-phone').value = window.selectedStaffForWa.map(s => s.whatsapp).join(', ');
-            document.getElementById('wa-preview-message').value = waMessage;
-            document.getElementById('modal-whatsapp-preview').classList.remove('hidden');
+                document.getElementById('wa-target-phone').value = window.selectedStaffForWa.map(s => s.whatsapp).join(', ');
+                document.getElementById('wa-preview-message').value = waMessage;
+                document.getElementById('modal-whatsapp-preview').classList.remove('hidden');
+            }
 
             uploadedScanUrl = '';
             uploadedDokUrl = '';
