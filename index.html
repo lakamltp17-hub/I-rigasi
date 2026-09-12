@@ -245,15 +245,15 @@
             </div>
         </section>
 
-        <!-- Bagian yang diubah background-nya menjadi yellow elegant -->
+        <!-- Bagian Pelayanan Utama / Irigasi -->
         <section id="pelayanan-utama" class="py-20 bg-gradient-to-b from-amber-50/80 via-yellow-50/50 to-white border-b border-amber-200/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-xs font-bold uppercase tracking-widest text-pu-gold bg-amber-100/80 px-3.5 py-1.5 rounded-full border border-amber-300 shadow-sm">E-DISPOSISI & TRANSPARANSI PELAYANAN</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-pu-blue mt-3 tracking-tight">Irigasi</h2>
-            <p class="text-pu-darkblue font-bold text-base sm:text-lg mt-2">Integrasi Rekam Informasi dan Monitoring Administrasi Surat Instansi</p>
-            <p class="text-slate-600 mt-2 text-sm max-w-2xl mx-auto">Monitoring lengkap mencakup Nomor, Tanggal, Penanggung Jawab, Status, Asal, Perihal, Disposisi Pimpinan, Dokumentasi Lapangan, Scan PDF/Foto, serta Terhubung Google Spreadsheet.</p>
-        </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-pu-gold bg-amber-100/80 px-3.5 py-1.5 rounded-full border border-amber-300 shadow-sm">E-DISPOSISI & TRANSPARANSI PELAYANAN</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-pu-blue mt-3 tracking-tight">Irigasi</h2>
+                    <p class="text-pu-darkblue font-bold text-base sm:text-lg mt-2">Integrasi Rekam Informasi dan Monitoring Administrasi Surat Instansi</p>
+                    <p class="text-slate-600 mt-2 text-sm max-w-2xl mx-auto">Monitoring lengkap mencakup Nomor, Tanggal, Penanggung Jawab, Status, Asal, Perihal, Disposisi Pimpinan, Dokumentasi Lapangan, Scan PDF/Foto, serta Terhubung Google Spreadsheet.</p>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Service 1 -->
@@ -295,6 +295,7 @@
             </div>
         </section>
 
+        <!-- Layanan Surat & Tracking Section -->
         <section id="layanan-surat" class="py-20 bg-slate-100/80 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
@@ -309,91 +310,91 @@
                     </div>
 
                     <!-- Quick Add & Filter Controls -->
-                <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="openConfigApiModal()" class="px-3 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition" title="Koneksi Google Sheets">
-                        <i class="fa-solid fa-file-excel text-emerald-600"></i>
-                        <span>Google Sheets</span>
-                    </button>
-                    <button onclick="openNewLetterModal()" class="px-4 py-2.5 rounded-xl bg-pu-blue hover:bg-pu-darkblue text-white font-semibold text-xs flex items-center gap-2 shadow-sm transition">
-                        <i class="fa-solid fa-plus text-amber-400"></i> Input Surat Baru
-                    </button>
-                    <button onclick="refreshData()" class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-medium text-xs flex items-center gap-1.5 shadow-sm transition">
-                        <i class="fa-solid fa-rotate text-blue-600"></i> Refresh
-                    </button>
-                </div>
-            </div>
-
-            <!-- Filter Controls & Search Bar -->
-            <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
-                <div class="relative w-full md:w-96">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
-                    <input type="text" id="search-table-input" onkeyup="filterLettersTable()" placeholder="Cari nomor surat, perihal, atau pengirim..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-pu-blue focus:border-pu-blue transition">
-                </div>
-                <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
-                    <div class="flex items-center gap-2">
-                        <label class="text-xs font-semibold text-slate-600">Status:</label>
-                        <select id="status-filter-select" onchange="filterLettersTable()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-medium focus:ring-2 focus:ring-pu-blue">
-                            <option value="ALL">Semua Status</option>
-                            <option value="Diproses">Diproses</option>
-                            <option value="Disposisi Pimpinan">Disposisi Pimpinan</option>
-                            <option value="Selesai Ditindaklanjuti">Selesai Ditindaklanjuti</option>
-                        </select>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="openConfigApiModal()" class="px-3 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition" title="Koneksi Google Sheets">
+                            <i class="fa-solid fa-file-excel text-emerald-600"></i>
+                            <span>Google Sheets</span>
+                        </button>
+                        <button onclick="openNewLetterModal()" class="px-4 py-2.5 rounded-xl bg-pu-blue hover:bg-pu-darkblue text-white font-semibold text-xs flex items-center gap-2 shadow-sm transition">
+                            <i class="fa-solid fa-plus text-amber-400"></i> Input Surat Baru
+                        </button>
+                        <button onclick="refreshData()" class="px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-medium text-xs flex items-center gap-1.5 shadow-sm transition">
+                            <i class="fa-solid fa-rotate text-blue-600"></i> Refresh
+                        </button>
                     </div>
-                    <span class="text-xs text-slate-500 font-medium">Menampilkan <strong id="showing-count" class="text-pu-blue">0</strong> dari <strong id="total-count" class="text-slate-800">0</strong> surat</span>
+                </div>
+
+                <!-- Filter Controls & Search Bar -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <div class="relative w-full md:w-96">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+                        <input type="text" id="search-table-input" onkeyup="filterLettersTable()" placeholder="Cari nomor surat, perihal, atau pengirim..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-pu-blue focus:border-pu-blue transition">
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+                        <div class="flex items-center gap-2">
+                            <label class="text-xs font-semibold text-slate-600">Status:</label>
+                            <select id="status-filter-select" onchange="filterLettersTable()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-medium focus:ring-2 focus:ring-pu-blue">
+                                <option value="ALL">Semua Status</option>
+                                <option value="Diproses">Diproses</option>
+                                <option value="Disposisi Pimpinan">Disposisi Pimpinan</option>
+                                <option value="Selesai Ditindaklanjuti">Selesai Ditindaklanjuti</option>
+                            </select>
+                        </div>
+                        <span class="text-xs text-slate-500 font-medium">Menampilkan <strong id="showing-count" class="text-pu-blue">0</strong> dari <strong id="total-count" class="text-slate-800">0</strong> surat</span>
+                    </div>
+                </div>
+
+                <!-- Elements for API Status tracking -->
+                <div class="hidden">
+                    <input type="hidden" id="active-api-url" value="">
+                    <span id="current-mode-badge">Mode Simulasi</span>
+                    <span id="status-log">> Ready</span>
+                </div>
+
+                <!-- Surat Table Container -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-900 text-white font-semibold">
+                                    <th class="py-3.5 px-4 sm:px-6">Nomor & Tanggal</th>
+                                    <th class="py-3.5 px-4 sm:px-6">Perihal & Asal Surat</th>
+                                    <th class="py-3.5 px-4 sm:px-6">Penanggung Jawab</th>
+                                    <th class="py-3.5 px-4 sm:px-6">Disposisi Pimpinan</th>
+                                    <th class="py-3.5 px-4 sm:px-6">Status</th>
+                                    <th class="py-3.5 px-4 sm:px-6 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="surat-table-body" class="divide-y divide-slate-100">
+                                <!-- Table rows rendered dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Elements for API Status tracking -->
-            <div class="hidden">
-                <input type="hidden" id="active-api-url" value="">
-                <span id="current-mode-badge">Mode Simulasi</span>
-                <span id="status-log">> Ready</span>
+        <!-- SECTION STAF TEKNIS -->
+        <section id="staf-teknis" class="py-20 relative bg-slate-900 text-white border-b border-slate-700">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="pupr.png" alt="Background Dinas PUPR" class="w-full h-full object-cover object-center opacity-300">
+                <div class="absolute inset-0 bg-gradient-to-b from-pu-darkblue/20 via-slate-300/20 to-pu-darkblue/20"></div>
             </div>
 
-            <!-- Surat Table Container -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs">
-                        <thead>
-                            <tr class="bg-slate-900 text-white font-semibold">
-                                <th class="py-3.5 px-4 sm:px-6">Nomor & Tanggal</th>
-                                <th class="py-3.5 px-4 sm:px-6">Perihal & Asal Surat</th>
-                                <th class="py-3.5 px-4 sm:px-6">Penanggung Jawab</th>
-                                <th class="py-3.5 px-4 sm:px-6">Disposisi Pimpinan</th>
-                                <th class="py-3.5 px-4 sm:px-6">Status</th>
-                                <th class="py-3.5 px-4 sm:px-6 text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="surat-table-body" class="divide-y divide-slate-100">
-                            <!-- Table rows rendered dynamically -->
-                        </tbody>
-                    </table>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-pu-gold bg-amber-950/80 px-3 py-1 rounded-full border border-amber-500/40">Staf Teknis & Penanggung Jawab</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 tracking-tight">Bidang PSDA - IP</h2>
+                    <p class="text-slate-300 mt-3 text-base">Penanggung jawab teknis disposisi, survei kelapangan, serta tindak lanjut surat permohonan masyarakat dan instansi.</p>
+                </div>
+
+                <!-- Staff Grid Dynamic Container -->
+                <div id="staff-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Populated dynamically by JS renderStaffGrid() -->
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- SECTION STAF TEKNIS -->
-    <section id="staf-teknis" class="py-20 relative bg-slate-900 text-white border-b border-slate-700">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="pupr.png" alt="Background Dinas PUPR" class="w-full h-full object-cover object-center opacity-300">
-            <div class="absolute inset-0 bg-gradient-to-b from-pu-darkblue/20 via-slate-300/20 to-pu-darkblue/20"></div>
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-pu-gold bg-amber-950/80 px-3 py-1 rounded-full border border-amber-500/40">Staf Teknis & Penanggung Jawab</span>
-				<h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 tracking-tight">Bidang PSDA - IP</h2>
-                <p class="text-slate-300 mt-3 text-base">Penanggung jawab teknis disposisi, survei kelapangan, serta tindak lanjut surat permohonan masyarakat dan instansi.</p>
-            </div>
-
-            <!-- Staff Grid Dynamic Container -->
-            <div id="staff-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Populated dynamically by JS renderStaffGrid() -->
-            </div>
-        </div>
-    </section>
+        </section>
 
     </main>
 
@@ -512,9 +513,15 @@
                             <h4 class="font-bold text-sm text-slate-900 flex items-center gap-2">
                                 <i class="fa-solid fa-file-pdf text-red-500"></i> Berkas / Scan Surat Masuk
                             </h4>
-                            <a id="det-scan-download" href="#" target="_blank" class="text-xs text-pu-blue hover:underline font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-expand"></i> Buka Full Berkas
-                            </a>
+                            <div class="flex items-center gap-2">
+                                <label for="edit-scan-file-input" class="cursor-pointer text-xs bg-pu-blue hover:bg-pu-darkblue text-white px-2 py-1 rounded font-semibold transition flex items-center gap-1" title="Edit Scan Surat">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit Scan
+                                </label>
+                                <input type="file" id="edit-scan-file-input" accept="image/*,.pdf,.doc,.docx" class="hidden" onchange="handleEditScanUpload(this)">
+                                <a id="det-scan-download" href="#" target="_blank" class="text-xs text-pu-blue hover:underline font-semibold flex items-center gap-1">
+                                    <i class="fa-solid fa-expand"></i> Buka Full Berkas
+                                </a>
+                            </div>
                         </div>
                         <div onclick="openFullscreenImage(document.getElementById('det-scan-img').src, 'Scan Berkas Surat')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer">
                             <img id="det-scan-img" src="" alt="Scan Berkas Surat" 
@@ -532,9 +539,15 @@
                             <h4 class="font-bold text-sm text-slate-900 flex items-center gap-2">
                                 <i class="fa-solid fa-camera text-emerald-600"></i> Dokumentasi Setelah Ditindaklanjuti
                             </h4>
-                            <button id="det-dok-download" type="button" class="text-xs text-emerald-600 hover:underline font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-expand"></i> Buka Full Gambar
-                            </button>
+                            <div class="flex items-center gap-2">
+                                <label for="edit-dok-file-input" class="cursor-pointer text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-2 py-1 rounded font-semibold transition flex items-center gap-1" title="Edit Dokumentasi Lapangan">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit Dok
+                                </label>
+                                <input type="file" id="edit-dok-file-input" accept="image/*" class="hidden" onchange="handleEditDokUpload(this)">
+                                <button id="det-dok-download" type="button" class="text-xs text-emerald-600 hover:underline font-semibold flex items-center gap-1">
+                                    <i class="fa-solid fa-expand"></i> Buka Full Gambar
+                                </button>
+                            </div>
                         </div>
                         <div onclick="openFullscreenImage(document.getElementById('det-dok-img').src, 'Dokumentasi Lapangan')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer">
                             <img id="det-dok-img" src="" alt="Dokumentasi Tindak Lanjut" 
@@ -808,7 +821,6 @@ function doPost(e) {
             const pass = document.getElementById('login-password').value.trim();
             const errorMsg = document.getElementById('login-error-msg');
 
-            // Username dan Password default akses
             if (user === 'admin' && pass === 'puprambon') {
                 document.getElementById('login-overlay').classList.add('hidden');
                 showToast('Berhasil masuk ke portal Dinas PUPR Kota Ambon!', 'success');
@@ -828,7 +840,7 @@ function doPost(e) {
             }
         }
 
-        // Default Technical Staff Data (Dilengkapi Nomor WhatsApp & Foto dari Galeri)
+        // Default Technical Staff Data
         const staffList = [
             {
                 id: 'staf-1',
@@ -878,7 +890,6 @@ function doPost(e) {
                 foto: 'Ani.png',
                 status: 'Aktif'	
 			},
-			
             {
                 id: 'staf-6',
                 nama: 'Junior Lokollo, ST',
@@ -1068,11 +1079,10 @@ function doPost(e) {
         let currentSuratList = [...initialSuratData];
         let googleAppsScriptUrl = 'https://script.google.com/macros/s/AKfycbxrXPQDepDEz_J_updtvKmlpcVOhxyYp3PwpIAm775qDix4DyUCOXCzmqB15zWHBwkD/exec';
 
-        // Temporary Upload Storage
         let uploadedScanUrl = '';
         let uploadedDokUrl = '';
+        let currentActiveSuratItem = null;
 
-        // Array Daftar Foto untuk Slideshow Latar Belakang Hero Section (Bisa diganti atau ditambah nama filenya sesuai keinginan)
         const heroImages = [
             "pupr.png",
             "624c60ba898e4.jpg",
@@ -1082,7 +1092,6 @@ function doPost(e) {
         ];
         let currentHeroIndex = 0;
 
-        // Initialize on DOM Ready
         window.addEventListener('DOMContentLoaded', () => {
             renderStaffGrid();
             populatePjSelect();
@@ -1090,15 +1099,12 @@ function doPost(e) {
             startHeroSlideshow();
         });
 
-        // Fungsi Slideshow Background Hero agar tidak kaku
         function startHeroSlideshow() {
             const bgImageElement = document.getElementById('hero-bg-image');
             if (!bgImageElement) return;
 
-            // Set gambar awal
             bgImageElement.src = heroImages[currentHeroIndex];
 
-            // Interval ganti gambar setiap 5 detik dengan efek transisi
             setInterval(() => {
                 bgImageElement.style.opacity = '0';
                 
@@ -1110,7 +1116,6 @@ function doPost(e) {
             }, 5000);
         }
 
-        // Toggle Mobile Menu
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
@@ -1148,7 +1153,6 @@ function doPost(e) {
             `).join('');
         }
 
-        // Populate Penanggung Jawab as Checkboxes inside container
         function populatePjSelect() {
             const container = document.getElementById('input-pj-container');
             if (!container) return;
@@ -1165,7 +1169,6 @@ function doPost(e) {
             const showingCount = document.getElementById('showing-count');
             const totalCount = document.getElementById('total-count');
 
-            // Menampilkan hanya maksimal 5 data terbaru pada tampilan awal/default
             const limitedData = data.slice(0, 5);
 
             showingCount.textContent = limitedData.length;
@@ -1244,17 +1247,6 @@ function doPost(e) {
             renderSuratTable(filtered);
         }
 
-        function filterByStatus(status) {
-            const select = document.getElementById('status-filter-select');
-            if (status === 'Semua') {
-                select.value = 'ALL';
-            } else {
-                select.value = status;
-            }
-            filterLettersTable();
-            window.location.hash = 'layanan-surat';
-        }
-
         function filterByStaff(staffName) {
             document.getElementById('search-table-input').value = staffName;
             filterLettersTable();
@@ -1262,6 +1254,7 @@ function doPost(e) {
         }
 
         function openDetailModal(item) {
+            currentActiveSuratItem = item;
             document.getElementById('modal-nomor-surat-badge').textContent = item.nomorSurat;
             document.getElementById('modal-perihal-title').textContent = item.perihal;
             document.getElementById('det-nomor').textContent = item.nomorSurat;
@@ -1295,6 +1288,40 @@ function doPost(e) {
             }
 
             document.getElementById('modal-detail-surat').classList.remove('hidden');
+        }
+
+        function handleEditScanUpload(input) {
+            const file = input.files[0];
+            if (!file || !currentActiveSuratItem) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const result = e.target.result;
+                currentActiveSuratItem.scanUrl = result;
+                document.getElementById('det-scan-img').src = result;
+				// Simpan perubahan ke localStorage agar persisten
+                localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
+                renderSuratTable(currentSuratList);
+                showToast('Scan berkas surat berhasil diperbarui!', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleEditDokUpload(input) {
+            const file = input.files[0];
+            if (!file || !currentActiveSuratItem) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const result = e.target.result;
+                currentActiveSuratItem.dokumentasiUrl = result;
+                document.getElementById('det-dok-img').src = result;
+				// Simpan perubahan ke localStorage agar persisten
+                localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
+                renderSuratTable(currentSuratList);
+                showToast('Dokumentasi lapangan berhasil diperbarui!', 'success');
+            };
+            reader.readAsDataURL(file);
         }
 
         function handleFileUpload(input, type) {
@@ -1354,7 +1381,6 @@ function doPost(e) {
         function openNewLetterModal() {
             removeFileUpload('scan');
             removeImageUpload('dok');
-            // Uncheck all checkboxes on modal open
             document.querySelectorAll('input[name="penanggungJawab"]').forEach(cb => cb.checked = false);
             document.getElementById('modal-input-surat').classList.remove('hidden');
         }
@@ -1371,11 +1397,9 @@ function doPost(e) {
             document.getElementById(id).classList.add('hidden');
         }
 
-        // Form Submit for New Letter with multiple checkboxes value collection & WhatsApp Trigger
         function handleNewLetterSubmit(e) {
             e.preventDefault();
             
-            // Collect all selected checkboxes and their WhatsApp contacts
             const checkedBoxes = Array.from(document.querySelectorAll('input[name="penanggungJawab"]:checked'));
             if (checkedBoxes.length === 0) {
                 showToast('Pilih minimal satu Penanggung Jawab Teknis!', 'warning');
@@ -1402,13 +1426,11 @@ function doPost(e) {
             closeModal('modal-input-surat');
             showToast('Surat & Berkas berhasil ditambahkan ke sistem!', 'success');
 
-            // Simpan seluruh staf yang dipilih beserta nomor WhatsApp-nya ke variabel global untuk pengiriman massal
             window.selectedStaffForWa = checkedBoxes.map(el => ({
                 nama: el.value,
                 whatsapp: el.getAttribute('data-whatsapp') || ''
             }));
 
-            // Generate WhatsApp Notification Preview
             const waMessage = `*NOTIFIKASI E-DISPOSISI SURAT PUPR KOTA AMBON*\n\n` +
                               `Halo/Yth. Staf Teknis *(${penanggungJawabStr})*,\n\n` +
                               `Terdapat surat masuk baru yang didisposisikan kepada Tim Anda:\n` +
@@ -1439,7 +1461,6 @@ function doPost(e) {
             }
         }
 
-        // Trigger WhatsApp Window Application untuk setiap staf yang dipilih secara berurutan
         function sendWhatsAppMessage() {
             const message = document.getElementById('wa-preview-message').value;
             
@@ -1448,7 +1469,6 @@ function doPost(e) {
                 return;
             }
 
-            // Looping untuk membuka tab WhatsApp masing-masing staf terpilih secara berurutan dengan jeda waktu
             window.selectedStaffForWa.forEach((staff, index) => {
                 if (staff.whatsapp) {
                     const encodedMessage = encodeURIComponent(message);
@@ -1476,113 +1496,111 @@ function doPost(e) {
         }
 
         function handleSaveApiUrl(e) {
-    e.preventDefault();
-    const url = document.getElementById('input-api-url').value.trim();
-    if (url) {
-        googleAppsScriptUrl = url;
-        localStorage.setItem('saved_apps_script_url', url); // Simpan permanen
+            e.preventDefault();
+            const url = document.getElementById('input-api-url').value.trim();
+            if (url) {
+                googleAppsScriptUrl = url;
+                localStorage.setItem('saved_apps_script_url', url);
 
-        document.getElementById('active-api-url').value = url;
-        document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
-        document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
-        document.getElementById('status-log').textContent = '> Connection Endpoint Saved: Ready to fetch remote data.';
-        closeModal('modal-config-api');
-        showToast('URL Web App Google Apps Script berhasil dihubungkan & disimpan permanen!', 'success');
-        testConnection();
-    }
-}
-
-function useMockEngine() {
-    googleAppsScriptUrl = '';
-    localStorage.removeItem('saved_apps_script_url'); // Hapus data tersimpan jika kembali ke demo
-
-    document.getElementById('active-api-url').value = 'Menggunakan Mock Engine Internal';
-    document.getElementById('current-mode-badge').textContent = 'Mode Simulasi Lokasi (Demo)';
-    document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30';
-    closeModal('modal-config-api');
-    showToast('Beralih ke mode simulasi lokal.', 'info');
-}
-
-function testConnection() {
-    if (!googleAppsScriptUrl) {
-        showToast('Modul berjalan dalam Mode Simulasi (Local Data)', 'info');
-        return;
-    }
-
-    const log = document.getElementById('status-log');
-    log.textContent = '> Fetching live data from Google Sheets...';
-
-    fetch(googleAppsScriptUrl)
-        .then(res => res.json())
-        .then(data => {
-            if (Array.isArray(data) && data.length > 0) {
-                currentSuratList = data;
-                renderSuratTable(currentSuratList);
-                log.textContent = `> Sync Successful! Fetched ${data.length} records.`;
-                showToast(`Berhasil menyinkronkan ${data.length} surat dari Google Sheets!`, 'success');
+                document.getElementById('active-api-url').value = url;
+                document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
+                document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
+                document.getElementById('status-log').textContent = '> Connection Endpoint Saved: Ready to fetch remote data.';
+                closeModal('modal-config-api');
+                showToast('URL Web App Google Apps Script berhasil dihubungkan & disimpan permanen!', 'success');
+                testConnection();
             }
-        })
-        .catch(err => {
-            log.textContent = '> Sync Failed: Returning to fallback buffer.';
-            showToast('Gagal terhubung ke URL Google Script (Pastikan opsi Web App Anyone aktif).', 'warning');
-        });
-}
-
-function refreshData() {
-    if (googleAppsScriptUrl) {
-        testConnection();
-    } else {
-        renderSuratTable(currentSuratList);
-        showToast('Tampilan data surat diperbarui.', 'info');
-    }
-}
-
-function showToast(message, type = 'info') {
-    const container = document.getElementById('toast-container');
-    const toast = document.createElement('div');
-
-    let bg = 'bg-slate-900 text-white';
-    if (type === 'success') bg = 'bg-emerald-600 text-white';
-    if (type === 'warning') bg = 'bg-amber-600 text-white';
-    if (type === 'info') bg = 'bg-pu-blue text-white';
-
-    toast.className = `px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0 ${bg}`;
-    toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
-
-    container.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-    }, 50);
-
-    setTimeout(() => {
-        toast.classList.add('opacity-0');
-        setTimeout(() => toast.remove(), 300);
-    }, 3500);
-}
-
-// Inisialisasi otomatis & cek URL tersimpan saat halaman dimuat
-window.addEventListener('DOMContentLoaded', () => {
-    if (typeof renderStaffGrid === 'function') renderStaffGrid();
-    if (typeof populatePjSelect === 'function') populatePjSelect();
-    if (typeof renderSuratTable === 'function') renderSuratTable(currentSuratList);
-    if (typeof startHeroSlideshow === 'function') startHeroSlideshow();
-
-    // Langsung jalankan koneksi menggunakan URL yang sudah di-hardcode di atas
-    if (googleAppsScriptUrl) {
-        const inputEl = document.getElementById('input-api-url');
-        const activeEl = document.getElementById('active-api-url');
-        const badgeEl = document.getElementById('current-mode-badge');
-        
-        if (inputEl) inputEl.value = googleAppsScriptUrl;
-        if (activeEl) activeEl.value = googleAppsScriptUrl;
-        if (badgeEl) {
-            badgeEl.textContent = 'Mode Google Sheets Connected';
-            badgeEl.className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
         }
-        testConnection();
-    }
-});
-</script>
+
+        function useMockEngine() {
+            googleAppsScriptUrl = '';
+            localStorage.removeItem('saved_apps_script_url');
+
+            document.getElementById('active-api-url').value = 'Menggunakan Mock Engine Internal';
+            document.getElementById('current-mode-badge').textContent = 'Mode Simulasi Lokasi (Demo)';
+            document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30';
+            closeModal('modal-config-api');
+            showToast('Beralih ke mode simulasi lokal.', 'info');
+        }
+
+        function testConnection() {
+            if (!googleAppsScriptUrl) {
+                showToast('Modul berjalan dalam Mode Simulasi (Local Data)', 'info');
+                return;
+            }
+
+            const log = document.getElementById('status-log');
+            log.textContent = '> Fetching live data from Google Sheets...';
+
+            fetch(googleAppsScriptUrl)
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        currentSuratList = data;
+                        renderSuratTable(currentSuratList);
+                        log.textContent = `> Sync Successful! Fetched ${data.length} records.`;
+                        showToast(`Berhasil menyinkronkan ${data.length} surat dari Google Sheets!`, 'success');
+                    }
+                })
+                .catch(err => {
+                    log.textContent = '> Sync Failed: Returning to fallback buffer.';
+                    showToast('Gagal terhubung ke URL Google Script (Pastikan opsi Web App Anyone aktif).', 'warning');
+                });
+        }
+
+        function refreshData() {
+            if (googleAppsScriptUrl) {
+                testConnection();
+            } else {
+                renderSuratTable(currentSuratList);
+                showToast('Tampilan data surat diperbarui.', 'info');
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+
+            let bg = 'bg-slate-900 text-white';
+            if (type === 'success') bg = 'bg-emerald-600 text-white';
+            if (type === 'warning') bg = 'bg-amber-600 text-white';
+            if (type === 'info') bg = 'bg-pu-blue text-white';
+
+            toast.className = `px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0 ${bg}`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof renderStaffGrid === 'function') renderStaffGrid();
+            if (typeof populatePjSelect === 'function') populatePjSelect();
+            if (typeof renderSuratTable === 'function') renderSuratTable(currentSuratList);
+            if (typeof startHeroSlideshow === 'function') startHeroSlideshow();
+
+            if (googleAppsScriptUrl) {
+                const inputEl = document.getElementById('input-api-url');
+                const activeEl = document.getElementById('active-api-url');
+                const badgeEl = document.getElementById('current-mode-badge');
+                
+                if (inputEl) inputEl.value = googleAppsScriptUrl;
+                if (activeEl) activeEl.value = googleAppsScriptUrl;
+                if (badgeEl) {
+                    badgeEl.textContent = 'Mode Google Sheets Connected';
+                    badgeEl.className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
+                }
+                testConnection();
+            }
+        });
+    </script>
 </body>
 </html>
