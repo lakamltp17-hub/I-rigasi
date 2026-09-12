@@ -523,13 +523,8 @@
                                 </a>
                             </div>
                         </div>
-                        <div onclick="openFullscreenImage(document.getElementById('det-scan-img').src, 'Scan Berkas Surat')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer">
-                            <img id="det-scan-img" src="" alt="Scan Berkas Surat" 
-                                 class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
-                                 onerror="this.src='https://placehold.co/600x800/e2e8f0/475569?text=Berkas+Surat+Digital'">
-                            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow"><i class="fa-solid fa-expand mr-1"></i> Klik untuk Buka Full Gambar</span>
-                            </div>
+                        <div id="det-scan-preview-box" onclick="openFullscreenImage(currentActiveSuratItem?.scanUrl, 'Scan Berkas Surat')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer">
+                            <!-- Dynamic preview container for scan file -->
                         </div>
                     </div>
 
@@ -1093,6 +1088,12 @@ function doPost(e) {
         let currentHeroIndex = 0;
 
         window.addEventListener('DOMContentLoaded', () => {
+            const cached = localStorage.getItem('surat_data_cache');
+            if (cached) {
+                try {
+                    currentSuratList = JSON.parse(cached);
+                } catch(e) {}
+            }
             renderStaffGrid();
             populatePjSelect();
             renderSuratTable(currentSuratList);
@@ -1267,11 +1268,33 @@ function doPost(e) {
             statusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300';
             statusBadge.textContent = item.status;
 
-            const scanImg = document.getElementById('det-scan-img');
+            const scanPreviewBox = document.getElementById('det-scan-preview-box');
+            const scanUrl = item.scanUrl || '';
             const scanDownload = document.getElementById('det-scan-download');
             const dokDownload = document.getElementById('det-dok-download');
             
-            scanImg.src = item.scanUrl || 'https://placehold.co/600x800/e2e8f0/475569?text=Scan+Berkas+Surat+Digital';
+            // Render scan preview dynamically based on whether it is a PDF or an Image
+            if (scanUrl.includes('application/pdf') || scanUrl.toLowerCase().endsWith('.pdf') || scanUrl.includes('.pdf?')) {
+                scanPreviewBox.innerHTML = `
+                    <div class="flex flex-col items-center justify-center p-6 text-center h-full w-full bg-red-50 text-red-700">
+                        <i class="fa-solid fa-file-pdf text-5xl mb-2 text-red-500"></i>
+                        <span class="font-bold text-sm">Dokumen PDF Berkas Surat</span>
+                        <span class="text-[11px] text-slate-500 mt-1">Klik untuk membuka atau mengunduh file PDF</span>
+                    </div>
+                    <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow"><i class="fa-solid fa-expand mr-1"></i> Klik untuk Buka Full PDF</span>
+                    </div>
+                `;
+            } else {
+                scanPreviewBox.innerHTML = `
+                    <img id="det-scan-img" src="${scanUrl || 'https://placehold.co/600x800/e2e8f0/475569?text=Scan+Berkas+Surat+Digital'}" alt="Scan Berkas Surat" 
+                         class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+                         onerror="this.src='https://placehold.co/600x800/e2e8f0/475569?text=Scan+Berkas+Surat+Digital'">
+                    <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow"><i class="fa-solid fa-expand mr-1"></i> Klik untuk Buka Full Gambar</span>
+                    </div>
+                `;
+            }
             
             scanDownload.onclick = function(e) {
                 e.preventDefault();
@@ -1298,8 +1321,8 @@ function doPost(e) {
             reader.onload = function(e) {
                 const result = e.target.result;
                 currentActiveSuratItem.scanUrl = result;
-                document.getElementById('det-scan-img').src = result;
-				// Simpan perubahan ke localStorage agar persisten
+                
+                openDetailModal(currentActiveSuratItem);
                 localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
                 renderSuratTable(currentSuratList);
                 showToast('Scan berkas surat berhasil diperbarui!', 'success');
@@ -1316,7 +1339,7 @@ function doPost(e) {
                 const result = e.target.result;
                 currentActiveSuratItem.dokumentasiUrl = result;
                 document.getElementById('det-dok-img').src = result;
-				// Simpan perubahan ke localStorage agar persisten
+                
                 localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
                 renderSuratTable(currentSuratList);
                 showToast('Dokumentasi lapangan berhasil diperbarui!', 'success');
@@ -1422,6 +1445,7 @@ function doPost(e) {
             };
 
             currentSuratList.unshift(newSurat);
+            localStorage.setItem('surat_data_cache', JSON.stringify(currentSuratList));
             renderSuratTable(currentSuratList);
             closeModal('modal-input-surat');
             showToast('Surat & Berkas berhasil ditambahkan ke sistem!', 'success');
@@ -1580,27 +1604,6 @@ function doPost(e) {
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (typeof renderStaffGrid === 'function') renderStaffGrid();
-            if (typeof populatePjSelect === 'function') populatePjSelect();
-            if (typeof renderSuratTable === 'function') renderSuratTable(currentSuratList);
-            if (typeof startHeroSlideshow === 'function') startHeroSlideshow();
-
-            if (googleAppsScriptUrl) {
-                const inputEl = document.getElementById('input-api-url');
-                const activeEl = document.getElementById('active-api-url');
-                const badgeEl = document.getElementById('current-mode-badge');
-                
-                if (inputEl) inputEl.value = googleAppsScriptUrl;
-                if (activeEl) activeEl.value = googleAppsScriptUrl;
-                if (badgeEl) {
-                    badgeEl.textContent = 'Mode Google Sheets Connected';
-                    badgeEl.className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
-                }
-                testConnection();
-            }
-        });
     </script>
 </body>
 </html>
