@@ -113,6 +113,13 @@
 
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
+    <!-- EXTERNAL APP VIEWER (UNTUK MENAMPILKAN 4 WEBSITE LAYANAN) -->
+    <div id="external-app-viewer" class="hidden fixed inset-0 z-50 bg-slate-900 flex flex-col">
+        <div class="w-full h-full relative">
+            <iframe id="external-iframe" src="" class="w-full h-full border-0"></iframe>
+        </div>
+    </div>
+
     <header class="sticky top-0 z-40 w-full glass-nav text-white border-b border-slate-700/50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
@@ -258,19 +265,19 @@
             </div>
         </section>
 
-        <!-- Bagian Pelayanan Utama / Irigasi -->
+        <!-- Bagian Pelayanan Utama (Terintegrasi ke 4 Website Vercel) -->
         <section id="pelayanan-utama" class="py-20 bg-gradient-to-b from-amber-50/80 via-yellow-50/50 to-white border-b border-amber-200/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="text-xs font-bold uppercase tracking-widest text-pu-gold bg-amber-100/80 px-3.5 py-1.5 rounded-full border border-amber-300 shadow-sm">E-DISPOSISI & TRANSPARANSI PELAYANAN</span>
                     <h2 class="text-4xl sm:text-5xl font-extrabold text-pu-blue mt-3 tracking-tight">IRIGASI</h2>
                     <p class="text-pu-darkblue font-bold text-base sm:text-lg mt-2">Integrasi Rekam Informasi dan Monitoring Administrasi Surat Instansi</p>
-                    <p class="text-slate-600 mt-2 text-sm max-w-2xl mx-auto">Monitoring lengkap mencakup Nomor, Tanggal, Penanggung Jawab, Status, Asal, Perihal, Disposisi Pimpinan, Dokumentasi Lapangan, Scan PDF/Foto, serta Terhubung Google Spreadsheet.</p>
+                    <p class="text-slate-600 mt-2 text-sm max-w-2xl mx-auto">Klik pada salah satu menu di bawah untuk membuka halaman layanan terkait secara interaktif.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Service 1 -->
-                    <div class="group bg-white/90 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1">
+                    <!-- Service 1: Air Bersih -->
+                    <div onclick="openExternalApp('https://air-bersih-esv3.vercel.app/', 'Air Bersih')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-faucet-drip"></i>
                         </div>
@@ -278,8 +285,8 @@
                         <p class="text-sm text-slate-600 group-hover:text-slate-200 mt-2 leading-relaxed">Pengelolaan dan penyediaan fasilitas air bersih serta jaringan distribusi bagi masyarakat Kota Ambon.</p>
                     </div>
 
-                    <!-- Service 2 -->
-                    <div class="group bg-white/90 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1">
+                    <!-- Service 2: Talud -->
+                    <div onclick="openExternalApp('https://layanan-talud.vercel.app/', 'Talud (Tanah, Sungai, Pantai)')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-water"></i>
                         </div>
@@ -287,8 +294,8 @@
                         <p class="text-sm text-slate-600 group-hover:text-slate-200 mt-2 leading-relaxed">Pembangunan dan pemeliharaan struktur pengaman tebing, bantaran sungai, serta abrasi pantai Kota Ambon.</p>
                     </div>
 
-                    <!-- Service 3 -->
-                    <div class="group bg-white/90 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1">
+                    <!-- Service 3: Infrastruktur / Bangunan -->
+                    <div onclick="openExternalApp('https://infrastruktur-virid.vercel.app/', 'Infrastruktur')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-building"></i>
                         </div>
@@ -296,8 +303,8 @@
                         <p class="text-sm text-slate-600 group-hover:text-slate-200 mt-2 leading-relaxed">Pengawasan, perencanaan, dan pembangunan infrastruktur bangunan gedung serta fasilitas publik.</p>
                     </div>
 
-                    <!-- Service 4 -->
-                    <div class="group bg-white/90 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1">
+                    <!-- Service 4: Sanitasi -->
+                    <div onclick="openExternalApp('https://layanan-sanitasi-dc8a.vercel.app/', 'Sanitasi')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-cyan-100 text-cyan-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-pump-soap"></i>
                         </div>
@@ -505,18 +512,14 @@
                     </div>
                     <div>
                         <span class="text-slate-400 uppercase font-semibold block text-[10px]">Penanggung Jawab Teknis</span>
-                        <!-- Dibuat Interaktif: Dapat diklik/diubah staf langsung -->
                         <div class="mt-0.5 relative">
                             <button type="button" onclick="toggleEditPjDropdown()" id="det-pj-btn" class="w-full text-left font-bold text-pu-blue text-sm flex items-center justify-between bg-white px-2.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 transition shadow-sm">
                                 <span id="det-pj" class="truncate"><i class="fa-solid fa-user-check text-emerald-600 mr-1"></i> -</span>
                                 <i class="fa-solid fa-chevron-down text-[10px] text-slate-500"></i>
                             </button>
-                            <!-- Dropdown list staff pilihan penanggung jawab -->
                             <div id="det-pj-dropdown" class="hidden absolute z-20 mt-1 w-72 bg-white rounded-xl shadow-xl border border-slate-200 p-2 max-h-56 overflow-y-auto custom-scrollbar space-y-1">
                                 <div class="text-[10px] font-bold text-slate-400 uppercase px-2 py-1">Pilih Staf Penanggung Jawab:</div>
-                                <div id="det-pj-checkboxes" class="space-y-1">
-                                    <!-- Diisi dynamically -->
-                                </div>
+                                <div id="det-pj-checkboxes" class="space-y-1"></div>
                             </div>
                         </div>
                     </div>
@@ -532,7 +535,6 @@
 
                 <!-- Document Scan Preview & Documentation Tabs/Sections -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
                     <!-- Left: Berkas / Scan Surat -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
@@ -549,9 +551,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div id="det-scan-preview-box" onclick="openFullscreenImage(currentActiveSuratItem?.scanUrl, 'Scan Berkas Surat')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer">
-                            <!-- Dynamic preview container for scan file -->
-                        </div>
+                        <div id="det-scan-preview-box" onclick="openFullscreenImage(currentActiveSuratItem?.scanUrl, 'Scan Berkas Surat')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer"></div>
                     </div>
 
                     <!-- Right: Dokumentasi Tindak Lanjut Lapangan -->
@@ -571,19 +571,15 @@
                             </div>
                         </div>
                         <div onclick="openFullscreenImage(document.getElementById('det-dok-img').src, 'Dokumentasi Lapangan')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer">
-                            <img id="det-dok-img" src="" alt="Dokumentasi Tindak Lanjut" 
-                                 class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
-                                 onerror="this.src='https://placehold.co/600x800/f1f5f9/64748b?text=Foto+Tindak+Lanjut+Lapangan'">
+                            <img id="det-dok-img" src="" alt="Dokumentasi Tindak Lanjut" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f1f5f9/64748b?text=Foto+Tindak+Lanjut+Lapangan'">
                             <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                                 <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow"><i class="fa-solid fa-expand mr-1"></i> Klik untuk Buka Full Gambar</span>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- Modal Footer (Tombol Simpan File & Tutup Detail) -->
             <div class="bg-slate-50 p-4 border-t border-slate-200 flex justify-end gap-2">
                 <button onclick="saveCurrentLetterChanges()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
                     <i class="fa-solid fa-floppy-disk"></i> Simpan File
@@ -625,10 +621,8 @@
                         <input type="text" id="input-asal" required placeholder="Contoh: Kantor Kecamatan Sirimau..." class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-pu-blue">
                     </div>
                     <div>
-                        <label class="block font-semibold text-slate-700 mb-1">Penanggung Jawab Teknis (Opsional / Bisa Nanti)</label>
-                        <div id="input-pj-container" class="max-h-40 overflow-y-auto border border-slate-300 rounded-xl p-2.5 space-y-1.5 bg-slate-50 custom-scrollbar">
-                            <!-- Populated dynamically with checkboxes -->
-                        </div>
+                        <label class="block font-semibold text-slate-700 mb-1">Penanggung Jawab Teknis</label>
+                        <div id="input-pj-container" class="max-h-40 overflow-y-auto border border-slate-300 rounded-xl p-2.5 space-y-1.5 bg-slate-50 custom-scrollbar"></div>
                     </div>
                 </div>
 
@@ -652,10 +646,9 @@
                     </div>
                 </div>
 
-                <!-- Input File Berkas / Scan Surat & Foto Lapangan -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                     <div>
-                        <label class="block font-semibold text-slate-700 mb-1">Upload Berkas / Scan Surat (PDF/Gambar/Doc)</label>
+                        <label class="block font-semibold text-slate-700 mb-1">Upload Berkas / Scan Surat</label>
                         <div class="flex flex-col gap-2">
                             <input type="file" id="input-scan-file" accept="image/*,.pdf,.doc,.docx" onchange="handleFileUpload(this, 'scan')" class="hidden">
                             <label for="input-scan-file" class="cursor-pointer flex items-center justify-center gap-2 p-3 bg-slate-50 hover:bg-slate-100 border border-dashed border-slate-300 rounded-xl text-slate-700 font-semibold transition text-xs">
@@ -674,7 +667,7 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block font-semibold text-slate-700 mb-1">Foto Lapangan (Kamera / Galeri)</label>
+                        <label class="block font-semibold text-slate-700 mb-1">Foto Lapangan</label>
                         <div class="flex flex-col gap-2">
                             <input type="file" id="input-dok-file" accept="image/*" onchange="handleImageUpload(this, 'preview-dok-img', 'dok')" class="hidden">
                             <label for="input-dok-file" class="cursor-pointer flex items-center justify-center gap-2 p-3 bg-slate-50 hover:bg-slate-100 border border-dashed border-slate-300 rounded-xl text-slate-700 font-semibold transition text-xs">
@@ -838,6 +831,44 @@ function doPost(e) {
     </div>
 
     <script>
+        // Fungsi untuk membuka website eksternal via iframe view
+        let iframeLoadCount = 0;
+        function openExternalApp(url, title) {
+            iframeLoadCount = 0;
+            const viewer = document.getElementById('external-app-viewer');
+            const iframe = document.getElementById('external-iframe');
+            
+            iframe.src = url;
+            viewer.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeExternalApp() {
+            const viewer = document.getElementById('external-app-viewer');
+            const iframe = document.getElementById('external-iframe');
+            iframe.src = 'about:blank';
+            viewer.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            iframeLoadCount = 0;
+        }
+
+        // Deteksi ketika tombol "Kembali Ke Beranda" pada website eksternal diklik (iframe kembali ke root url)
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('external-iframe');
+            if (iframe) {
+                iframe.addEventListener('load', () => {
+                    iframeLoadCount++;
+                    // Jika pengguna mengklik kembali ke beranda di dalam website Vercel, iframe akan kembali meload root awal
+                    if (iframeLoadCount > 1) {
+                        setTimeout(() => {
+                            closeExternalApp();
+                            showToast('Kembali ke Beranda Dashboard Utama PUPR.', 'info');
+                        }, 200);
+                    }
+                });
+            }
+        });
+
         // Fungsi Verifikasi Login Akses Masuk
         function handleLogin(e) {
             e.preventDefault();
@@ -1052,7 +1083,6 @@ function doPost(e) {
 			},
         ];
 
-        // Initial Sample Data for Surat Tracking
         let initialSuratData = [
             {
                 nomorSurat: '600/104/PUPR/AMB/2026',
@@ -1424,16 +1454,13 @@ function doPost(e) {
             reader.readAsDataURL(file);
         }
 
-        // PERBAIKAN UTAMA: Sinkronisasi Checkbox Staf PJ saat tombol Simpan File diklik + Sinkronisasi WhatsApp
         function saveCurrentLetterChanges() {
             if (!currentActiveSuratItem) return;
 
-            // Ambil ulang staf yang dicentang pada checkbox modal detail
             const checkedBoxes = Array.from(document.querySelectorAll('input[name="editPenanggungJawab"]:checked'));
             const checkedPj = checkedBoxes.map(el => el.value);
             const penanggungJawabStr = checkedPj.length > 0 ? checkedPj.join(', ') : 'Belum Ditentukan';
 
-            // Perbarui properti penanggung jawab pada item aktif
             currentActiveSuratItem.penanggungJawab = penanggungJawabStr;
 
             const index = currentSuratList.findIndex(item => item.nomorSurat === currentActiveSuratItem.nomorSurat);
@@ -1471,7 +1498,6 @@ function doPost(e) {
 
             closeModal('modal-detail-surat');
 
-            // Munculkan pratinjau WhatsApp jika staf dipilih
             if (checkedBoxes.length > 0) {
                 window.selectedStaffForWa = checkedBoxes.map(el => ({
                     nama: el.value,
