@@ -1087,18 +1087,33 @@ function doPost(e) {
         ];
         let currentHeroIndex = 0;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const cached = localStorage.getItem('surat_data_cache');
-            if (cached) {
-                try {
-                    currentSuratList = JSON.parse(cached);
-                } catch(e) {}
-            }
-            renderStaffGrid();
-            populatePjSelect();
-            renderSuratTable(currentSuratList);
-            startHeroSlideshow();
-        });
+window.addEventListener('DOMContentLoaded', () => {
+    // Cek apakah ada URL API yang tersimpan di localStorage
+    const savedApi = localStorage.getItem('saved_apps_script_url');
+    if (savedApi) {
+        googleAppsScriptUrl = savedApi;
+        document.getElementById('active-api-url').value = savedApi;
+        document.getElementById('current-mode-badge').textContent = 'Mode Google Sheets Connected';
+        document.getElementById('current-mode-badge').className = 'px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
+    }
+
+    const cached = localStorage.getItem('surat_data_cache');
+    if (cached) {
+        try {
+            currentSuratList = JSON.parse(cached);
+        } catch(e) {}
+    }
+
+    renderStaffGrid();
+    populatePjSelect();
+    renderSuratTable(currentSuratList);
+    startHeroSlideshow();
+
+    // TAMBAHAN: Otomatis ambil data terbaru dari Google Sheets saat dibuka di device manapun
+    if (googleAppsScriptUrl) {
+        testConnection();
+    }
+});
 
         function startHeroSlideshow() {
             const bgImageElement = document.getElementById('hero-bg-image');
