@@ -1752,34 +1752,40 @@ function doPost(e) {
         }
 
         function refreshData() {
+            showToast('Memuat ulang data...', 'info');
             if (googleAppsScriptUrl) {
                 testConnection();
             } else {
+                const cached = localStorage.getItem('surat_data_cache');
+                if (cached) {
+                    try {
+                        currentSuratList = JSON.parse(cached);
+                    } catch(e) {}
+                }
                 renderSuratTable(currentSuratList);
-                showToast('Tampilan data surat diperbarui.', 'info');
+                showToast('Data lokal diperbarui.', 'success');
             }
         }
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-
+            
             let bg = 'bg-slate-900 text-white';
             if (type === 'success') bg = 'bg-emerald-600 text-white';
-            if (type === 'warning') bg = 'bg-amber-600 text-white';
+            if (type === 'warning') bg = 'bg-amber-500 text-slate-900 font-bold';
             if (type === 'info') bg = 'bg-pu-blue text-white';
 
-            toast.className = `px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0 ${bg}`;
-            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
-
+            toast.className = `${bg} px-4 py-3 rounded-xl shadow-xl text-xs flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span>${message}</span>`;
+            
             container.appendChild(toast);
-
             setTimeout(() => {
                 toast.classList.remove('translate-y-2', 'opacity-0');
             }, 50);
 
             setTimeout(() => {
-                toast.classList.add('opacity-0');
+                toast.classList.add('translate-y-2', 'opacity-0');
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
         }
