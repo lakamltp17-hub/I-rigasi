@@ -12,8 +12,6 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Plus Jakarta Sans -->
@@ -121,7 +119,7 @@
 
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- EXTERNAL APP VIEWER (UNTUK MENAMPILKAN 4 WEBSITE LAYANAN) -->
+    <!-- EXTERNAL APP VIEWER -->
     <div id="external-app-viewer" class="hidden fixed inset-0 z-50 bg-slate-900 flex flex-col">
         <div class="w-full h-full relative">
             <iframe id="external-iframe" src="" class="w-full h-full border-0"></iframe>
@@ -130,7 +128,6 @@
 
     <header class="sticky top-0 z-40 w-full glass-nav text-white border-b border-slate-700/50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
             <div class="flex items-center space-x-3">
                 <div class="relative group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
 				<div class="w-12 h-12 bg-darkblue rounded-[10px] flex items-center justify-center overflow-hidden p-1">
@@ -143,11 +140,9 @@
                 </div>
             </div>
 
-            <!-- Desktop Nav Menu -->
             <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
                 <a href="#hero" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 transition">Beranda</a>
                 <a href="#pelayanan-utama" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 transition">Pelayanan Utama</a>
-                <!-- MENU PENGADUAN DISISIPKAN DI SINI -->
                 <a href="https://script.google.com/macros/s/AKfycbwz_FYlaswk4lzTY2bJFEKtLZ-OmIA3cgQ9BAzqniP0MDrUyt2bGwj7Imd3BUkmmCbJ/exec" target="_blank" class="px-3 py-2 rounded-lg text-sm font-medium text-amber-300 hover:text-white hover:bg-white/10 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-bullhorn"></i> Pengaduan
                 </a>
@@ -166,7 +161,6 @@
                 </button>
             </nav>
 
-            <!-- CTA Quick Action & Mobile Menu Trigger -->
             <div class="flex items-center space-x-3">
                 <a href="#layanan-surat" class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-pu-yellow to-amber-500 hover:from-amber-400 hover:to-pu-yellow text-pu-darkblue font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -184,11 +178,9 @@
             </div>
         </div>
 
-        <!-- Mobile Drawer -->
         <div id="mobile-menu" class="hidden md:hidden bg-pu-darkblue/95 border-b border-slate-700 px-4 pt-2 pb-6 space-y-2">
             <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-white/10">Beranda</a>
             <a href="#pelayanan-utama" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-white/10">Pelayanan Utama</a>
-            <!-- MENU PENGADUAN MOBILE DISISIPKAN DI SINI -->
             <a href="https://script.google.com/macros/s/AKfycbwz_FYlaswk4lzTY2bJFEKtLZ-OmIA3cgQ9BAzqniP0MDrUyt2bGwj7Imd3BUkmmCbJ/exec" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-amber-300 hover:bg-white/10 flex items-center gap-2">
                 <i class="fa-solid fa-bullhorn"></i> Pengaduan
             </a>
@@ -206,7 +198,6 @@
 
     <main class="flex-grow">
         <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900 text-white">
-            <!-- Background Image with Overlay -->
             <div class="absolute inset-0 z-0">
                 <img id="hero-bg-image" src="" 
                      alt="Gedung PUPR Ambon & Infrastruktur" 
@@ -215,11 +206,8 @@
                 <div class="absolute inset-0 hero-gradient"></div>
             </div>
 
-            <!-- Content Container -->
             <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
-                
                 <div class="space-y-6 flex flex-col items-center">
-                    <!-- Badges Header -->
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-pu-yellow/40 backdrop-blur-md">
                         <span class="text-xs font-semibold text-pu-yellow tracking-wide uppercase">Portal Resmi Dinas PUPR Kota Ambon</span>
                     </div>
@@ -232,13 +220,11 @@
                         Selamat datang di portal informasi digital Dinas Pekerjaan Umum dan Penataan Ruang Kota Ambon. Pantau disposisi surat masuk, status tindak lanjut, serta dokumentasi lapangan.
                     </p>
 
-                    <!-- CTAs Grid -->
                     <div class="pt-4 flex flex-wrap gap-3 justify-center">
                         <a href="#layanan-surat" class="px-6 py-3.5 rounded-xl bg-pu-yellow hover:bg-amber-400 text-pu-darkblue font-extrabold text-base shadow-xl shadow-amber-500/20 hover:shadow-amber-500/40 transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2.5">
                             <i class="fa-solid fa-envelope-open-text text-lg"></i>
                             <span>Lihat Surat & Disposisi</span>
                         </a>
-                        <!-- TOMBOL PENGADUAN DI HERO SECTION DISISIPKAN DI SINI -->
                         <a href="https://script.google.com/macros/s/AKfycbwz_FYlaswk4lzTY2bJFEKtLZ-OmIA3cgQ9BAzqniP0MDrUyt2bGwj7Imd3BUkmmCbJ/exec" target="_blank" class="px-6 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-extrabold text-base shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2.5">
                             <i class="fa-solid fa-bullhorn text-lg"></i>
                             <span>Layanan Pengaduan</span>
@@ -253,7 +239,6 @@
                         </a>
                     </div>
 
-                    <!-- Quick Counters -->
                     <div class="pt-8 border-t border-slate-700/60 grid grid-cols-3 gap-6 max-w-lg w-full mt-4">
                         <div class="bg-slate-800/40 rounded-lg p-3 backdrop-blur-sm border border-slate-700/50 text-center">
                             <span class="block text-2xl font-bold text-amber-400" id="counter-total-surat">0</span>
@@ -269,11 +254,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- Bagian Pelayanan Utama (Terintegrasi ke 4 Website Vercel) -->
+        <!-- Bagian Pelayanan Utama -->
         <section id="pelayanan-utama" class="py-20 bg-gradient-to-b from-amber-50/80 via-yellow-50/50 to-white border-b border-amber-200/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -284,7 +268,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Service 1: Air Bersih -->
                     <div onclick="openExternalApp('https://air-bersih-esv3.vercel.app/', 'Air Bersih')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-faucet-drip"></i>
@@ -293,7 +276,6 @@
                         <p class="text-sm text-slate-600 group-hover:text-slate-200 mt-2 leading-relaxed">Pengelolaan dan penyediaan fasilitas air bersih serta jaringan distribusi bagi masyarakat Kota Ambon.</p>
                     </div>
 
-                    <!-- Service 2: Talud -->
                     <div onclick="openExternalApp('https://layanan-talud.vercel.app/', 'Talud (Tanah, Sungai, Pantai)')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-water"></i>
@@ -302,7 +284,6 @@
                         <p class="text-sm text-slate-600 group-hover:text-slate-200 mt-2 leading-relaxed">Pembangunan dan pemeliharaan struktur pengaman tebing, bantaran sungai, serta abrasi pantai Kota Ambon.</p>
                     </div>
 
-                    <!-- Service 3: Infrastruktur / Bangunan -->
                     <div onclick="openExternalApp('https://infrastruktur-virid.vercel.app/', 'Infrastruktur')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-building"></i>
@@ -311,7 +292,6 @@
                         <p class="text-sm text-slate-600 group-hover:text-slate-200 mt-2 leading-relaxed">Pengawasan, perencanaan, dan pembangunan infrastruktur bangunan gedung serta fasilitas publik.</p>
                     </div>
 
-                    <!-- Service 4: Sanitasi -->
                     <div onclick="openExternalApp('https://layanan-sanitasi-dc8a.vercel.app/', 'Sanitasi')" class="group bg-white/95 hover:bg-pu-blue rounded-2xl p-6 border border-amber-200/80 hover:border-pu-blue transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 cursor-pointer">
                         <div class="w-14 h-14 rounded-xl bg-cyan-100 text-cyan-600 group-hover:bg-amber-400 group-hover:text-pu-darkblue flex items-center justify-center text-2xl font-bold mb-5 transition-all">
                             <i class="fa-solid fa-pump-soap"></i>
@@ -326,8 +306,6 @@
         <!-- Layanan Surat & Tracking Section -->
         <section id="layanan-surat" class="py-20 bg-slate-100/80 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <!-- Section Header -->
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                     <div>
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-pu-blue text-xs font-bold mb-2">
@@ -337,7 +315,6 @@
                         <p class="text-slate-600 text-sm mt-1">Sistem informasi disposisi pimpinan, penanggung jawab teknis, scan berkas, dan bukti tindak lanjut.</p>
                     </div>
 
-                    <!-- Quick Add & Filter Controls -->
                     <div class="flex flex-wrap items-center gap-2">
                         <button onclick="openConfigApiModal()" class="px-3 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition" title="Koneksi Google Sheets">
                             <i class="fa-solid fa-file-excel text-emerald-600"></i>
@@ -352,7 +329,6 @@
                     </div>
                 </div>
 
-                <!-- Filter Controls & Search Bar -->
                 <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
                     <div class="relative w-full md:w-96">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
@@ -372,14 +348,12 @@
                     </div>
                 </div>
 
-                <!-- Elements for API Status tracking -->
                 <div class="hidden">
                     <input type="hidden" id="active-api-url" value="">
                     <span id="current-mode-badge">Mode Simulasi</span>
                     <span id="status-log">> Ready</span>
                 </div>
 
-                <!-- Surat Table Container -->
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse text-xs">
@@ -394,7 +368,6 @@
                                 </tr>
                             </thead>
                             <tbody id="surat-table-body" class="divide-y divide-slate-100">
-                                <!-- Table rows rendered dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -404,7 +377,6 @@
 
         <!-- SECTION STAF TEKNIS -->
         <section id="staf-teknis" class="py-20 relative bg-slate-900 text-white border-b border-slate-700">
-            <!-- Background Image with Overlay -->
             <div class="absolute inset-0 z-0">
                 <img src="pupr.png" alt="Background Dinas PUPR" class="w-full h-full object-cover object-center opacity-300">
                 <div class="absolute inset-0 bg-gradient-to-b from-pu-darkblue/20 via-slate-300/20 to-pu-darkblue/20"></div>
@@ -417,19 +389,15 @@
                     <p class="text-slate-300 mt-3 text-base">Penanggung jawab teknis disposisi, survei kelapangan, serta tindak lanjut surat permohonan masyarakat dan instansi.</p>
                 </div>
 
-                <!-- Staff Grid Dynamic Container -->
                 <div id="staff-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Populated dynamically by JS renderStaffGrid() -->
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="bg-[#061428] text-slate-400 border-t border-slate-800 text-xs sm:text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <!-- Col 1: Brand & Desc -->
                 <div class="space-y-3">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-[#081C38] rounded-[8px] flex items-center justify-center overflow-hidden p-1 border border-slate-700">
@@ -445,7 +413,6 @@
                     </p>
                 </div>
 
-                <!-- Col 2: Kontak Kantor -->
                 <div class="space-y-3">
                     <h4 class="text-amber-400 font-bold text-sm tracking-wider uppercase">Kontak Kantor</h4>
                     <div class="space-y-2 text-xs text-slate-300">
@@ -464,7 +431,6 @@
                     </div>
                 </div>
 
-                <!-- Col 3: Pemberitahuan Sistem -->
                 <div class="space-y-3">
                     <h4 class="text-amber-400 font-bold text-sm tracking-wider uppercase">Pemberitahuan Sistem</h4>
                     <div class="p-3.5 rounded-xl bg-[#0B1E3A] border border-slate-700/60 text-xs text-slate-300 leading-relaxed">
@@ -481,12 +447,10 @@
             </div>
         </div>
     </footer>
-
     
     <!-- Modal 1: Detail Surat & Disposisi Viewer -->
     <div id="modal-detail-surat" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-slate-200 animate-in fade-in zoom-in duration-200">
-            <!-- Modal Header -->
             <div class="bg-pu-darkblue text-white p-5 flex items-center justify-between border-b border-slate-700">
                 <div class="flex items-center gap-3">
                     <div class="p-2.5 bg-amber-400 text-pu-darkblue rounded-xl font-bold">
@@ -502,9 +466,7 @@
                 </button>
             </div>
 
-            <!-- Modal Content Body -->
             <div class="p-6 overflow-y-auto custom-scrollbar space-y-6">
-                <!-- Top Grid Details -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
                     <div>
                         <span class="text-slate-400 uppercase font-semibold block text-[10px]">Nomor Surat</span>
@@ -541,9 +503,7 @@
                     </div>
                 </div>
 
-                <!-- Document Scan Preview & Documentation Tabs/Sections -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Left: Berkas / Scan Surat -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
                             <h4 class="font-bold text-sm text-slate-900 flex items-center gap-2">
@@ -562,7 +522,6 @@
                         <div id="det-scan-preview-box" onclick="openFullscreenImage(currentActiveSuratItem?.scanUrl, 'Scan Berkas Surat')" class="h-64 rounded-xl border border-slate-300 bg-slate-100 overflow-hidden relative flex items-center justify-center group cursor-pointer"></div>
                     </div>
 
-                    <!-- Right: Dokumentasi Tindak Lanjut Lapangan -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
                             <h4 class="font-bold text-sm text-slate-900 flex items-center gap-2">
@@ -839,7 +798,6 @@ function doPost(e) {
     </div>
 
     <script>
-        // Fungsi untuk membuka website eksternal via iframe view
         let iframeLoadCount = 0;
         function openExternalApp(url, title) {
             iframeLoadCount = 0;
@@ -860,13 +818,11 @@ function doPost(e) {
             iframeLoadCount = 0;
         }
 
-        // Deteksi ketika tombol "Kembali Ke Beranda" pada website eksternal diklik (iframe kembali ke root url)
         document.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('external-iframe');
             if (iframe) {
                 iframe.addEventListener('load', () => {
                     iframeLoadCount++;
-                    // Jika pengguna mengklik kembali ke beranda di dalam website Vercel, iframe akan kembali meload root awal
                     if (iframeLoadCount > 1) {
                         setTimeout(() => {
                             closeExternalApp();
@@ -877,7 +833,6 @@ function doPost(e) {
             }
         });
 
-        // Fungsi Verifikasi Login Akses Masuk
         function handleLogin(e) {
             e.preventDefault();
             const user = document.getElementById('login-username').value.trim();
@@ -892,7 +847,6 @@ function doPost(e) {
             }
         }
 
-        // Fungsi Logout
         function handleLogout() {
             const konfirmasi = confirm("Apakah Anda yakin ingin keluar dari sistem?");
             if (konfirmasi) {
@@ -903,192 +857,30 @@ function doPost(e) {
             }
         }
 
-        // Default Technical Staff Data
         const staffList = [
-            {
-                id: 'staf-1',
-                nama: 'Hermin Taranda, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281247309373',
-                foto: 'Ermin.png',
-                status: 'Aktif'
-            },
-			{
-                id: 'staf-2',
-                nama: 'Rudi Payapo, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282184447636',
-                foto: 'Rudi.png',
-                status: 'Aktif'
-            },
-			{
-                id: 'staf-3',
-                nama: 'Samuel Alfons, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281248782778',
-                foto: 'SM',
-                status: 'Aktif'	
-			},
-			{
-                id: 'staf-4',
-                nama: 'Agustinus Coritelu, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282198343608',
-                foto: 'Agus.png',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-7',
-                nama: 'Gabriela Ovelia Lisatta, ST',
-                jabatan: 'Staff',
-                whatsapp: '6285299232331',
-                foto: 'Gabriela.png',
-                status: 'Aktif'
-			},	
-			{
-                id: 'staf-5',
-                nama: 'Arfiani Nurfatiha, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281333856828',
-                foto: 'Ani.png',
-                status: 'Aktif'	
-			},
-            {
-                id: 'staf-6',
-                nama: 'Junior Lokollo, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281289368125',
-                foto: 'Junior.png',
-                status: 'Aktif'
-            },
-            {
-                id: 'staf-4',
-                nama: 'Rajiv Kadir Sabban, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282248299990',
-                foto: 'Rajiv.png',
-                status: 'Aktif'
-            },
-            {
-                id: 'staf-5',
-                nama: 'Ryan Wlilliam Manuputty, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282239456160',
-                foto: 'Rian.jpeg',
-                status: 'Aktif'
-            },
-			{
-                id: 'staf-6',
-                nama: 'Hegi Daniel Mulya, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281297987207',
-                foto: 'Egi.jpeg',
-                status: 'Aktif'
-            },
-			{
-                id: 'staf-8',
-                nama: 'Erdin Calvin Leuwol, ST',
-                jabatan: 'Staff',
-                whatsapp: '6285213835259',
-                foto: 'Erdin.png',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-9',
-                nama: 'Lakam Laitupa, S.Tr. T.K.J.J.',
-                jabatan: 'Staff',
-                whatsapp: '6281314917232',
-                foto: 'Lakam.png',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-10',
-                nama: 'Yuliana Barbara Persulessy, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282198053316',
-                foto: 'Ulen.jpeg',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-11',
-                nama: 'Mutiah Zaila Isti Ishak, S.PWK',
-                jabatan: 'Staff',
-                whatsapp: '6285796845794',
-                foto: 'Muti.jpeg',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-12',
-                nama: 'Regiarta Sampetoding, ST',
-                jabatan: 'Staff',
-                whatsapp: '6285299585501',
-                foto: 'Regiarta.jpeg',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-13',
-                nama: 'Fandry Lesnussa, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282197587226',
-                foto: 'Fandri.png',
-                status: 'Aktif'	
-			},		
-			{
-                id: 'staf-14',
-                nama: 'Alfrets Yernunu, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281280373354',
-                foto: 'Aldy.png',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-15',
-                nama: 'Anugrah Fadillah Muksin, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282219014700',
-                foto: 'Nugi.png',
-                status: 'Aktif'	
-			},	
-			{
-                id: 'staf-16',
-                nama: 'Shihab Amir Al Hasib, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282123301093',
-                foto: 'Shihab.jpeg',
-                status: 'Aktif'	
-			},
-			{
-                id: 'staf-18',
-                nama: 'Ningrum, ST',
-                jabatan: 'Staff',
-                whatsapp: '6282121234665',
-                foto: 'ning.jpeg',
-                status: 'Aktif'	
-			},
-			{
-                id: 'staf-19',
-                nama: 'Wanda Kurnia Inri, ST',
-                jabatan: 'Staff',
-                whatsapp: '6281327585696',
-                foto: 'Wanda.png',
-                status: 'Aktif'	
-			},
-			{
-                id: 'staf-21',
-                nama: 'Yakob Souissa',
-                jabatan: 'Staff',
-                whatsapp: '6281314917232',
-                foto: 'Yakob.png',
-                status: 'Aktif'	
-			},
-			{
-                id: 'staf-23',
-                nama: 'Matheos Paunno, ST',
-                jabatan: 'Staff',
-                whatsapp: '6285282291048',
-                foto: 'Theo.png',
-                status: 'Aktif'	
-			},
+            { id: 'staf-1', nama: 'Hermin Taranda, ST', jabatan: 'Staff', whatsapp: '6281247309373', foto: 'Ermin.png', status: 'Aktif' },
+            { id: 'staf-2', nama: 'Rudi Payapo, ST', jabatan: 'Staff', whatsapp: '6282184447636', foto: 'Rudi.png', status: 'Aktif' },
+            { id: 'staf-3', nama: 'Samuel Alfons, ST', jabatan: 'Staff', whatsapp: '6281248782778', foto: 'SM', status: 'Aktif' },
+            { id: 'staf-4', nama: 'Agustinus Coritelu, ST', jabatan: 'Staff', whatsapp: '6282198343608', foto: 'Agus.png', status: 'Aktif' },
+            { id: 'staf-7', nama: 'Gabriela Ovelia Lisatta, ST', jabatan: 'Staff', whatsapp: '6285299232331', foto: 'Gabriela.png', status: 'Aktif' },
+            { id: 'staf-5', nama: 'Arfiani Nurfatiha, ST', jabatan: 'Staff', whatsapp: '6281333856828', foto: 'Ani.png', status: 'Aktif' },
+            { id: 'staf-6', nama: 'Junior Lokollo, ST', jabatan: 'Staff', whatsapp: '6281289368125', foto: 'Junior.png', status: 'Aktif' },
+            { id: 'staf-4', nama: 'Rajiv Kadir Sabban, ST', jabatan: 'Staff', whatsapp: '6282248299990', foto: 'Rajiv.png', status: 'Aktif' },
+            { id: 'staf-5', nama: 'Ryan Wlilliam Manuputty, ST', jabatan: 'Staff', whatsapp: '6282239456160', foto: 'Rian.jpeg', status: 'Aktif' },
+            { id: 'staf-6', nama: 'Hegi Daniel Mulya, ST', jabatan: 'Staff', whatsapp: '6281297987207', foto: 'Egi.jpeg', status: 'Aktif' },
+            { id: 'staf-8', nama: 'Erdin Calvin Leuwol, ST', jabatan: 'Staff', whatsapp: '6285213835259', foto: 'Erdin.png', status: 'Aktif' },
+            { id: 'staf-9', nama: 'Lakam Laitupa, S.Tr. T.K.J.J.', jabatan: 'Staff', whatsapp: '6281314917232', foto: 'Lakam.png', status: 'Aktif' },
+            { id: 'staf-10', nama: 'Yuliana Barbara Persulessy, ST', jabatan: 'Staff', whatsapp: '6282198053316', foto: 'Ulen.jpeg', status: 'Aktif' },
+            { id: 'staf-11', nama: 'Mutiah Zaila Isti Ishak, S.PWK', jabatan: 'Staff', whatsapp: '6285796845794', foto: 'Muti.jpeg', status: 'Aktif' },
+            { id: 'staf-12', nama: 'Regiarta Sampetoding, ST', jabatan: 'Staff', whatsapp: '6285299585501', foto: 'Regiarta.jpeg', status: 'Aktif' },
+            { id: 'staf-13', nama: 'Fandry Lesnussa, ST', jabatan: 'Staff', whatsapp: '6282197587226', foto: 'Fandri.png', status: 'Aktif' },
+            { id: 'staf-14', nama: 'Alfrets Yernunu, ST', jabatan: 'Staff', whatsapp: '6281280373354', foto: 'Aldy.png', status: 'Aktif' },
+            { id: 'staf-15', nama: 'Anugrah Fadillah Muksin, ST', jabatan: 'Staff', whatsapp: '6282219014700', foto: 'Nugi.png', status: 'Aktif' },
+            { id: 'staf-16', nama: 'Shihab Amir Al Hasib, ST', jabatan: 'Staff', whatsapp: '6282123301093', foto: 'Shihab.jpeg', status: 'Aktif' },
+            { id: 'staf-18', nama: 'Ningrum, ST', jabatan: 'Staff', whatsapp: '6282121234665', foto: 'ning.jpeg', status: 'Aktif' },
+            { id: 'staf-19', nama: 'Wanda Kurnia Inri, ST', jabatan: 'Staff', whatsapp: '6281327585696', foto: 'Wanda.png', status: 'Aktif' },
+            { id: 'staf-21', nama: 'Yakob Souissa', jabatan: 'Staff', whatsapp: '6281314917232', foto: 'Yakob.png', status: 'Aktif' },
+            { id: 'staf-23', nama: 'Matheos Paunno, ST', jabatan: 'Staff', whatsapp: '6285282291048', foto: 'Theo.png', status: 'Aktif' },
         ];
 
         let initialSuratData = [
@@ -1752,40 +1544,34 @@ function doPost(e) {
         }
 
         function refreshData() {
-            showToast('Memuat ulang data...', 'info');
             if (googleAppsScriptUrl) {
                 testConnection();
             } else {
-                const cached = localStorage.getItem('surat_data_cache');
-                if (cached) {
-                    try {
-                        currentSuratList = JSON.parse(cached);
-                    } catch(e) {}
-                }
                 renderSuratTable(currentSuratList);
-                showToast('Data lokal diperbarui.', 'success');
+                showToast('Tampilan data surat diperbarui.', 'info');
             }
         }
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            
+
             let bg = 'bg-slate-900 text-white';
             if (type === 'success') bg = 'bg-emerald-600 text-white';
-            if (type === 'warning') bg = 'bg-amber-500 text-slate-900 font-bold';
+            if (type === 'warning') bg = 'bg-amber-600 text-white';
             if (type === 'info') bg = 'bg-pu-blue text-white';
 
-            toast.className = `${bg} px-4 py-3 rounded-xl shadow-xl text-xs flex items-center gap-2 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto`;
-            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span>${message}</span>`;
-            
+            toast.className = `px-4 py-3 rounded-xl shadow-xl text-xs font-semibold flex items-center gap-2 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0 ${bg}`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
+
             container.appendChild(toast);
+
             setTimeout(() => {
                 toast.classList.remove('translate-y-2', 'opacity-0');
             }, 50);
 
             setTimeout(() => {
-                toast.classList.add('translate-y-2', 'opacity-0');
+                toast.classList.add('opacity-0');
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
         }
